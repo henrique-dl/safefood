@@ -1,21 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function App() {
+import Tabs from './navigation/tabs';
+import { Home } from './screens';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>
-        Hello World!
-      </Text>
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOption={{
+          headerShown: false
+        }}
+        initialRouteName={"Home"}
+      >
+        <Stack.Screen name="Home" component={Tabs} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
