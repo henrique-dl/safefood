@@ -18,6 +18,8 @@ const japanese_restaurant = require("../assets/images/japanese-restaurant.jpg");
 const kek_lapis_shop = require("../assets/images/kek-lapis-shop.jpg");
 const kek_lapis = require("../assets/images/kek-lapis.jpg");
 const kolo_mee = require("../assets/images/kolo-mee.jpg");
+const logo = require("../assets/images/logo.png");
+const logo_02 = require('../assets/images/logo_02.png');
 const nasi_briyani_mutton = require("../assets/images/nasi-briyani-mutton.jpg");
 const nasi_lemak = require("../assets/images/nasi-lemak.jpg");
 const noodle_shop = require("../assets/images/noodle-shop.jpg");
@@ -28,6 +30,7 @@ const sarawak_laksa = require("../assets/images/sarawak-laksa.jpg");
 const sushi = require("../assets/images/sushi.jpg");
 const teh_c_peng = require("../assets/images/teh-c-peng.jpg");
 const tomato_pasta = require("../assets/images/tomato-pasta.jpg");
+const onboarding = require('../assets/images/onboarding.jpeg');
 
 export default {
     avatar_1,
@@ -51,6 +54,7 @@ export default {
     kek_lapis_shop,
     kek_lapis,
     kolo_mee,
+    logo,
     nasi_briyani_mutton,
     nasi_lemak,
     noodle_shop,
@@ -60,4 +64,6 @@ export default {
     sushi,
     teh_c_peng,
     tomato_pasta,
+    onboarding,
+    logo_02
 }

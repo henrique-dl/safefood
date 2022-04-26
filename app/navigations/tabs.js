@@ -8,7 +8,10 @@ import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom
 import Svg, { Path } from 'react-native-svg';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
-import { Home } from "../screens"
+import { Home, SignIn, SignUp, OnBoarding } from "../screens"
+import AuthLayout from '../screens/Authentication/AuthLayout'
+
+import CustomDrawer from './CustomDrawer'
 
 import { COLORS, icons } from "../constants"
 
@@ -103,6 +106,7 @@ const Tabs = () => {
         <Tab.Navigator
             screenOptions={{
                 tabBarShowLabel: false,
+                // headerShown: false,
                 tabBarStyle: {
                     position: 'absolute',
                     left: 0,
@@ -144,7 +148,7 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="Search"
-                component={Home}
+                component={SignIn}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
@@ -167,7 +171,7 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="Like"
-                component={Home}
+                component={SignUp}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
@@ -190,7 +194,8 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="User"
-                component={Home}
+                // component={Home}
+                component={CustomDrawer}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
