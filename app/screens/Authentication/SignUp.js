@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 
 import { AuthLayout } from '../';
 import { FONTS, SIZES, COLORS, icons2 } from '../../constants';
-import { FormInput, TextButton } from '../../components';
+import { FormInput, TextButton, TextIconButton } from '../../components';
 import { utils } from '../../utils';
 
 const SignUp = () => {
@@ -280,6 +280,24 @@ const SignUp = () => {
                             : COLORS.transparentPrimary
                         }}
                         onPress={() => navigation.navigate('Otp')}
+                    />
+
+                    <TextIconButton
+                        containerStyle={{
+                        height: 50,
+                        alignItems: 'center',
+                        marginTop: 20,
+                        borderRadius: SIZES.radius,
+                        backgroundColor: '#fff',
+                        borderWidth: 1,
+                        borderColor: COLORS.darkGray
+                        }}  
+                        label='Continue com Google'
+                        labelStyle={{
+                        marginLeft: SIZES.radius,
+                        color: COLORS.black
+                        }}
+                        onPress={() => console.log('Google')}
                     />
 
                     <View

@@ -11,8 +11,6 @@ import { isIphoneX } from 'react-native-iphone-x-helper';
 import { Home, SignIn, SignUp, OnBoarding } from "../screens"
 import AuthLayout from '../screens/Authentication/AuthLayout'
 
-import CustomDrawer from './CustomDrawer'
-
 import { COLORS, icons } from "../constants"
 
 const Tab = createBottomTabNavigator();
@@ -194,8 +192,8 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="User"
-                // component={Home}
-                component={CustomDrawer}
+                component={OnBoarding}
+                // component={CustomDrawer}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image

@@ -23,6 +23,7 @@ const setting = require("../assets/icons2/setting.png")
 const star = require("../assets/icons2/star.png")
 const wallet = require("../assets/icons2/wallet.png")
 const help = require("../assets/icons2/help.png")
+const google = require("../assets/icons2/google.png")
 
 export default {
     coupon,
@@ -34,6 +35,7 @@ export default {
     down_arrow,
     favourite,
     burger,
+    google,
     cherry,
     correct,
     eye_close,

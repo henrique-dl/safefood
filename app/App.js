@@ -4,11 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native'
 import { useFonts } from 'expo-font';
 
-import Tabs from './navigations/tabs'
-// import { Home } from './screens'
-// import { MainLayout } from './screens'
-import CustomDrawer from './navigations/CustomDrawer'
-// import { EditProfile } from './screens';
+import CustomDrawer from './navigations/Drawer'
 
 const Stack = createStackNavigator();
 
@@ -28,7 +24,7 @@ const App = () => {
     
   return (
           <NavigationContainer>
-              <Stack.Navigator
+              {/* <Stack.Navigator
                   screenOptions={{
                       headerShown: false
                   }}
@@ -36,7 +32,8 @@ const App = () => {
               >
                   <Stack.Screen name="Home" component={Tabs} />
                   <Stack.Screen name="Restaurant" component={CustomDrawer} />
-              </Stack.Navigator>
+              </Stack.Navigator> */}
+              <CustomDrawer />
           </NavigationContainer>
       )
 }

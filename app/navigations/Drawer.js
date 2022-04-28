@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
 import { MainLayout } from '../screens';
+import Tabs from './Tabs'
 import { COLORS, FONTS, SIZES, constants, icons2, icons, images } from '../constants';
 
 const Drawer = createDrawerNavigator()
@@ -9,31 +10,28 @@ const Drawer = createDrawerNavigator()
 const CustomDrawerItem = ({label, icon}) => {
     return (
         <TouchableOpacity
-        style={{
-            flexDirection: 'row',
-            height: 40,
-            marginBottom: SIZES.base,
-            alignItems: 'center',
-            // paddingLeft: SIZES.radius,
-            paddingLeft: SIZES.base,
-            borderRadius: SIZES.base,
-            // backgroundColor
-        }}
-        // onPress
+            style={{
+                flexDirection: 'row',
+                height: 40,
+                marginBottom: SIZES.base,
+                alignItems: 'center',
+                paddingLeft: SIZES.base,
+                borderRadius: SIZES.base,
+            }}
         >
             <Image
                 source={icon}
                 style={{
                     width: 20,
                     height: 20,
-                    tintColor: COLORS.white
+                    tintColor: COLORS.black
                 }}
             />
 
             <Text
                 style={{
                     marginLeft: 15,
-                    color: COLORS.white,
+                    color: COLORS.black,
                     ...FONTS.h3
                 }}
             >
@@ -74,7 +72,7 @@ const CustomDrawerContent = ({navigation}) => {
                             style={{
                                 height: 35,
                                 width: 35,
-                                tintColor: COLORS.white
+                                tintColor: COLORS.black
                             }}
                         />
                     </TouchableOpacity>
@@ -103,8 +101,8 @@ const CustomDrawerContent = ({navigation}) => {
                             marginLeft: SIZES.radius
                         }}
                     >
-                        <Text style={{ color: COLORS.white, ...FONTS.h3 }}>Teste nome</Text>
-                        <Text style={{ color: COLORS.white, ...FONTS.body4 }}>Ver meu perfil</Text>
+                        <Text style={{ color: COLORS.black, ...FONTS.h3 }}>Teste nome</Text>
+                        <Text style={{ color: COLORS.black, ...FONTS.body4 }}>Ver meu perfil</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -142,10 +140,8 @@ const CustomDrawerContent = ({navigation}) => {
                     style={{
                         height: 1,
                         marginVertical: SIZES.padding,
-                        // marginVertical: SIZES.radius,
-                        // marginLeft: SIZES.radius,
                         marginLeft: SIZES.base,
-                        backgroundColor: COLORS.lightGray
+                        backgroundColor: COLORS.darkGray
                     }}
                 />
 
@@ -167,8 +163,7 @@ const CustomDrawerContent = ({navigation}) => {
 
                 <View
                     style={{
-                        // marginBottom: SIZES.padding
-                        marginBottom: 60
+                        marginBottom: 10
                     }}
                 >
                     <CustomDrawerItem
@@ -183,41 +178,32 @@ const CustomDrawerContent = ({navigation}) => {
 
 const CustomDrawer = () => {
     return (
-        <View
-            style={{
-                flex: 1,
-                backgroundColor: COLORS.primary
+        <Drawer.Navigator
+            screenOptions={{
+                drawerType: 'slide',
+                overlayColor: 'transparent',
+                drawerStyle: {
+                    flex: 1,
+                    width: '65%',
+                    paddingRight: 20,
+                    backgroundColor: COLORS.lightGray2
+                },
+                sceneContainerStyle: {
+                    backgroundColor: 'transparent'
+                },
+                headerShown: false,
+                initialRouteName: 'MainLayout',
+            }}
+            drawerContent={props => {  
+                return (
+                    <CustomDrawerContent
+                        navigation={props.navigation}
+                    />
+                )
             }}
         >
-            <Drawer.Navigator
-                screenOptions={{
-                    drawerType: 'slide',
-                    overlayColor: 'transparent',
-                    drawerStyle: {
-                        flex: 1,
-                        width: '65%',
-                        paddingRight: 20,
-                        backgroundColor: 'transparent'
-                    },
-                    sceneContainerStyle: {
-                        backgroundColor: 'transparent'
-                    },
-                    headerShown: false,
-                    initialRouteName: 'MainLayout',
-                }}
-                drawerContent={props => {  
-                    return (
-                        <CustomDrawerContent
-                            navigation={props.navigation}
-                        />
-                    )
-                }}
-            >
-                <Drawer.Screen name='MainLayout'>
-                    {props => <MainLayout {...props} />}
-                </Drawer.Screen>
-            </Drawer.Navigator>
-        </View>
+            <Drawer.Screen name='MainLayout' component={Tabs} />
+        </Drawer.Navigator>
     )
 }
 

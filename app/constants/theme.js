@@ -32,7 +32,7 @@ export const COLORS = {
 
     lightGray: "#F5F5F6",
     // lightGray2: "#F6F6F7",
-    lightGray2: '#F5F5F8',
+    lightGray2: '#EFF2F3',
     lightGray3: "#EFEFF1",
     lightGray4: "#F8F8F9",
     transparent: "transparent",
