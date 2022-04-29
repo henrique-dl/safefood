@@ -282,6 +282,8 @@ const SignUp = () => {
                         onPress={() => navigation.navigate('Otp')}
                     />
 
+
+                    {/* Google Auth */}
                     <TextIconButton
                         containerStyle={{
                         height: 50,

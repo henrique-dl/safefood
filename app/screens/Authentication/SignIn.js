@@ -133,6 +133,25 @@ const SignIn = ({ navigation }) => {
                     }}
                 />
 
+                {/* Google Auth */}
+                <TextIconButton
+                    containerStyle={{
+                        height: 50,
+                        alignItems: 'center',
+                        marginTop: 20,
+                        borderRadius: SIZES.radius,
+                        backgroundColor: '#fff',
+                        borderWidth: 1,
+                        borderColor: COLORS.darkGray
+                    }}  
+                    label='Continue com Google'
+                    labelStyle={{
+                        marginLeft: SIZES.radius,
+                        color: COLORS.black
+                    }}
+                    onPress={() => console.log('Google')}
+                />
+
                 {/* Sign Up */}
                 <View
                     style={{
@@ -164,24 +183,6 @@ const SignIn = ({ navigation }) => {
                         onPress={() => navigation.navigate('SignUp')}
                     />
                 </View>
-
-                <TextIconButton
-                    containerStyle={{
-                        height: 50,
-                        alignItems: 'center',
-                        marginTop:70,
-                        borderRadius: SIZES.radius,
-                        backgroundColor: '#fff',
-                        borderWidth: 1,
-                        borderColor: COLORS.darkGray
-                    }}  
-                    label='Continue com Google'
-                    labelStyle={{
-                        marginLeft: SIZES.radius,
-                        color: COLORS.black
-                    }}
-                    onPress={() => console.log('Google')}
-                />
             </View>    
         </AuthLayout>
     )
