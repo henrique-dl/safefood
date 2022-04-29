@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Aplicativo feito utilizando o framework javascript React com Expo, API Rest em Laravel e banco de dados SQL.
+Aplicativo desenvolvido utilizando o framework javascript React com Expo, API Rest em Laravel e banco de dados SQL.
 
 ## Instação
 
