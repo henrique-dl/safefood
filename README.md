@@ -6,7 +6,7 @@ Aplicativo feito utilizando o framework javascript React com Expo, API Rest em L
 
 ## Instação
 
-- Faça o clone do projeto (git clone https://github.com/henrique-dl/tcc/)
-- No terminal, navegue até a raiz do projeto e execute os seguintes comandos respectivamente:
+- Faça o clone do projeto (git clone https://github.com/henrique-dl/tcc.git)
+- No terminal, navegue até a raiz do projeto (cd tcc) e execute os seguintes comandos respectivamente:
   - `yarn install` para baixar todas as dependências do Javascript (package.json);
   - `yarn start`para executar o projeto localmente.
