@@ -8,14 +8,14 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
         <View
             style={{
                 flex: 1,
-                paddingVertical: SIZES.padding,
-                backgroundColor: COLORS.white
+                paddingVertical: 60,
+                backgroundColor: COLORS.white,
             }}
         >
             {/* App Icon */}
             <View
                 style={{
-                    alignItems: 'center'
+                    alignItems: 'center',
                 }}
             >
                 <Image
@@ -32,7 +32,7 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
             <View
                 style={{
                     marginTop: SIZES.padding,
-                    ...titleContainerStyle
+                    ...titleContainerStyle,
                 }}
             >
                 <Text

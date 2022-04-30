@@ -14,7 +14,7 @@ const MainLayout = (props) => {
                 backgroundColor: 'white'
             }}
         >
-            <Text>MainLayout</Text>
+            <Text>A FAZER</Text>
         </View>
     )
 }

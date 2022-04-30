@@ -24,12 +24,14 @@ import {
 
 import { icons, images, SIZES, COLORS, FONTS } from '../../constants'
 
+import { Tabs } from '../../navigations/Tabs'
+
 const Home = ({ navigation }) => {
 
     // Dummy Datas
 
     const initialCurrentLocation = {
-        streetName: "Kuching",
+        streetName: "Distrito Federal",
         gps: {
             latitude: 1.5496614931250685,
             longitude: 110.36381866919922
@@ -98,7 +100,7 @@ const Home = ({ navigation }) => {
     const restaurantData = [
         {
             id: 1,
-            name: "ByProgrammers Burger",
+            name: "Sra. Amêndoa Burger",
             rating: 4.8,
             categories: [5, 7],
             priceRating: affordable,
@@ -141,7 +143,7 @@ const Home = ({ navigation }) => {
         },
         {
             id: 2,
-            name: "ByProgrammers Pizza",
+            name: "Sra. Amêndoa Pizza",
             rating: 4.8,
             categories: [2, 4, 6],
             priceRating: expensive,
@@ -192,7 +194,7 @@ const Home = ({ navigation }) => {
         },
         {
             id: 3,
-            name: "ByProgrammers Hotdogs",
+            name: "Sra. Amêndoa Hotdogs",
             rating: 4.8,
             categories: [3],
             priceRating: expensive,
@@ -219,7 +221,7 @@ const Home = ({ navigation }) => {
         },
         {
             id: 4,
-            name: "ByProgrammers Sushi",
+            name: "Sra. Amêndoa Sushi",
             rating: 4.8,
             categories: [8],
             priceRating: expensive,
@@ -246,7 +248,7 @@ const Home = ({ navigation }) => {
         },
         {
             id: 5,
-            name: "ByProgrammers Cuisine",
+            name: "Sra. Amêndoa Cuisine",
             rating: 4.8,
             categories: [1, 2],
             priceRating: affordable,
@@ -299,7 +301,7 @@ const Home = ({ navigation }) => {
         {
 
             id: 6,
-            name: "ByProgrammers Dessets",
+            name: "Sra. Amêndoa Dessets",
             rating: 4.9,
             categories: [9, 10],
             priceRating: affordable,
@@ -373,7 +375,7 @@ const Home = ({ navigation }) => {
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row', height: 50 }}>
+            <View style={{ flexDirection: 'row', height: 50, marginTop: 35}}>
                 <TouchableOpacity
                     style={{
                         width: 50,
@@ -477,8 +479,8 @@ const Home = ({ navigation }) => {
 
         return (
             <View style={{ padding: SIZES.padding * 2 }}>
-                <Text style={{ ...FONTS.h1 }}>Main</Text>
-                <Text style={{ ...FONTS.h1 }}>Categories</Text>
+                <Text style={{ ...FONTS.h1 }}>Estabelecimentos</Text>
+                <Text style={{ ...FONTS.h1 }}>Próximos</Text>
 
                 <FlatList
                     data={categories}

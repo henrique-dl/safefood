@@ -7,7 +7,7 @@ import { FONTS, SIZES, COLORS, icons2 } from '../../constants';
 import { FormInput, TextButton, TextIconButton } from '../../components';
 import { utils } from '../../utils';
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
 
     const [email, setEmail] = React.useState('')
     const [username, setUsername] = React.useState('')
@@ -44,12 +44,18 @@ const SignUp = () => {
             }}
         >
 
-            <ScrollView>
+            <ScrollView
+                style={{
+                    // borderWidth: 1,
+                    // borderColor: 'red',
+                    marginBottom: -100
+                }}
+            >
                 {/* Form Input And Sign UP */}
                 <View
                     style={{
                         flex: 1,
-                        marginTop: SIZES.padding * 2,
+                        marginTop: SIZES.padding ,
                         paddingHorizontal: SIZES.padding * 2
                     }}
                 >
@@ -279,7 +285,7 @@ const SignUp = () => {
                             backgroundColor: isEnableSignUp() ? COLORS.primary
                             : COLORS.transparentPrimary
                         }}
-                        onPress={() => navigation.navigate('Otp')}
+                        onPress={() => navigation.navigate('MainScreen')}
                     />
 
 

@@ -64,7 +64,7 @@ const OnBoarding = ({ navigation }) => {
             <View
                 style={{
                     position: 'absolute',
-                    top: SIZES.height > 800 ? 50 : 25,
+                    top: SIZES.height > 800 ? 75 : 50,
                     left: 0,
                     right: 0,
                     alignItems: 'center',
@@ -108,7 +108,7 @@ const OnBoarding = ({ navigation }) => {
                             justifyContent: 'space-between',
                             paddingHorizontal: SIZES.padding,
                             marginVertical: SIZES.padding,
-                            marginBottom: 60
+                            marginBottom: 30
                         }}
                     >
                         <TextButton
@@ -156,7 +156,7 @@ const OnBoarding = ({ navigation }) => {
                                 width: 250,
                                 borderRadius: SIZES.radius
                             }}
-                            onPress={() => navigation.repalce('SignIn')}
+                            onPress={() => navigation.replace('SignIn')}
                         />
                     </View>
                 }

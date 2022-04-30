@@ -131,6 +131,7 @@ const SignIn = ({ navigation }) => {
                         backgroundColor: isEnableSignIn() ? COLORS.primary
                         : COLORS.transparentPrimary
                     }}
+                    onPress={() => navigation.navigate('MainScreen')}
                 />
 
                 {/* Google Auth */}

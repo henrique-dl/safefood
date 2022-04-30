@@ -4,7 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native'
 import { useFonts } from 'expo-font';
 
-import CustomDrawer from './navigations/Drawer'
+import { OnBoarding, SignIn, SignUp, ForgotPassword, Otp, Home } from './screens'
+
+import MainScreen from './navigations/Drawer';
 
 const Stack = createStackNavigator();
 
@@ -33,7 +35,37 @@ const App = () => {
                   <Stack.Screen name="Home" component={Tabs} />
                   <Stack.Screen name="Restaurant" component={CustomDrawer} />
               </Stack.Navigator> */}
-              <CustomDrawer />
+
+              {/* <CustomDrawer /> */}
+
+
+               <Stack.Navigator
+                screenOptions={{
+                    headerShown: false
+                }}
+                initialRouteName={'OnBoarding'}
+            >
+               <Stack.Screen
+                    name="OnBoarding"
+                    component={OnBoarding}
+                />
+
+                <Stack.Screen
+                    name="SignIn"
+                    component={SignIn}
+                />
+
+                <Stack.Screen
+                    name="SignUp"
+                    component={SignUp}
+                />
+
+                 <Stack.Screen
+                    name="MainScreen"
+                    component={MainScreen}
+                />
+
+            </Stack.Navigator>
           </NavigationContainer>
       )
 }

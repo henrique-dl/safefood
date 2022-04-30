@@ -7,7 +7,7 @@ import { COLORS, FONTS, SIZES, constants, icons2, icons, images } from '../const
 
 const Drawer = createDrawerNavigator()
 
-const CustomDrawerItem = ({label, icon}) => {
+const CustomDrawerItem = ({ label, icon }) => {
     return (
         <TouchableOpacity
             style={{
@@ -41,11 +41,11 @@ const CustomDrawerItem = ({label, icon}) => {
     )
 }
 
-const CustomDrawerContent = ({navigation}) => {
+const CustomDrawerContent = ({ navigation }) => {
     return (
         <DrawerContentScrollView
-        scrollEnabled={true}
-        contentContainerStyle={{ flex: 1 }}
+            scrollEnabled={true}
+            contentContainerStyle={{ flex: 1 }}
         >
             <View
                 style={{
@@ -161,22 +161,36 @@ const CustomDrawerContent = ({navigation}) => {
                     />
                 </View>
 
-                <View
+                <TouchableOpacity
                     style={{
-                        marginBottom: 10
+                        marginBottom: 10,
+                        flexDirection: 'row',
+                        height: 40,
+                        marginBottom: SIZES.base,
+                        alignItems: 'center',
+                        paddingLeft: SIZES.base,
+                        borderRadius: SIZES.base,
                     }}
+                    onPress={() => navigation.navigate('SignIn')}
                 >
-                    <CustomDrawerItem
-                        label="Sair"
-                        icon={icons2.logout}
+                    <Image
+                        source={icons2.logout}
+                            style={{
+                                width: 20,
+                                height: 20,
+                                tintColor: COLORS.black,
+                        }}
                     />
-                </View>
+                    <Text style={{ color: COLORS.black, ...FONTS.h3, marginLeft: SIZES.padding }}>
+                        Sair
+                    </Text>
+                </TouchableOpacity>
             </View>
         </DrawerContentScrollView>
     )
 }
 
-const CustomDrawer = () => {
+const MainScreen = () => {
     return (
         <Drawer.Navigator
             screenOptions={{
@@ -207,4 +221,4 @@ const CustomDrawer = () => {
     )
 }
 
-export default CustomDrawer;
+export default MainScreen;

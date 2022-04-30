@@ -8,7 +8,7 @@ import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom
 import Svg, { Path } from 'react-native-svg';
 import { isIphoneX } from 'react-native-iphone-x-helper';
 
-import { Home, SignIn, SignUp, OnBoarding } from "../screens"
+import { Home, SignIn, SignUp, OnBoarding, MainLayout } from "../screens"
 import AuthLayout from '../screens/Authentication/AuthLayout'
 
 import { COLORS, icons } from "../constants"
@@ -104,7 +104,7 @@ const Tabs = () => {
         <Tab.Navigator
             screenOptions={{
                 tabBarShowLabel: false,
-                // headerShown: false,
+                headerShown: false,
                 tabBarStyle: {
                     position: 'absolute',
                     left: 0,
@@ -112,7 +112,8 @@ const Tabs = () => {
                     right: 0,
                     borderTopWidth: 0,
                     backgroundColor: "transparent",
-                    elevation: 0
+                    elevation: 0,
+                    marginBottom: 5
                 }
             }}
             tabBar={(props) => (
@@ -122,7 +123,7 @@ const Tabs = () => {
             )}
         >
             <Tab.Screen
-                name="Home"
+                name="Início"
                 component={Home}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -145,8 +146,8 @@ const Tabs = () => {
             />
 
             <Tab.Screen
-                name="Search"
-                component={SignIn}
+                name="Login"
+                component={MainLayout}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
@@ -168,8 +169,8 @@ const Tabs = () => {
             />
 
             <Tab.Screen
-                name="Like"
-                component={SignUp}
+                name="Cadastro"
+                component={MainLayout}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
@@ -192,8 +193,7 @@ const Tabs = () => {
 
             <Tab.Screen
                 name="User"
-                component={OnBoarding}
-                // component={CustomDrawer}
+                component={MainLayout}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
