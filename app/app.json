@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
-    "version": "1.0.0",
+    "name": "SafeFood",
+    "slug": "SafeFood",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,9 +17,24 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.tcc.safefood",
+      "buildNumber": "0.0.1",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 0,
+      "package": "com.tcc.safefood",
+      "permissions": [
+        "com.google.android.c2dm.permission.RECEIVE",
+        "com.anddoes.launcher.permission.UPDATE_COUNT",
+        "com.majeur.launcher.permission.UPDATE_BADGE",
+        "com.google.android.providers.gsf.permission.READ_GSERVICES",
+        "com.sonyericsson.home.permission.BROADCAST_BADGE",
+        "com.htc.launcher.permission.READ_SETTINGS",
+        "com.htc.launcher.permission.UPDATE_SHORTCUT",
+        "com.sec.android.provider.badge.permission.READ",
+        "com.sec.android.provider.badge.permission.WRITE"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
