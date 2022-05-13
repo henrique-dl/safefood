@@ -1,0 +1,12 @@
+@hostname = http://localhost:3333
+
+# get {{hostname}}
+
+post http://localhost:3333/user
+Content-Type: application/json
+
+{
+  "st_nome": "Theo",
+  "st_email": "theo@email.com",
+  "st_senha": "123"
+}
