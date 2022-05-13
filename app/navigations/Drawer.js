@@ -4,6 +4,7 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import { MainLayout } from '../screens';
 import Tabs from './Tabs'
 import { COLORS, FONTS, SIZES, constants, icons2, icons, images } from '../constants';
+import { googleData } from '../components/TextGoogleButton';
 
 const Drawer = createDrawerNavigator()
 
@@ -42,6 +43,7 @@ const CustomDrawerItem = ({ label, icon }) => {
 }
 
 const CustomDrawerContent = ({ navigation }) => {
+    console.log(googleData)
     return (
         <DrawerContentScrollView
             scrollEnabled={true}
@@ -88,7 +90,7 @@ const CustomDrawerContent = ({ navigation }) => {
                     onPress={() => console.log("Profile")}
                 >
                     <Image
-                        source={images.avatar_1}
+                        source={googleData.picture ? {uri: googleData.picture} : images.avatar_1}
                         style={{
                             width: 50,
                             height: 50,
@@ -101,8 +103,8 @@ const CustomDrawerContent = ({ navigation }) => {
                             marginLeft: SIZES.radius
                         }}
                     >
-                        <Text style={{ color: COLORS.black, ...FONTS.h3 }}>Teste nome</Text>
-                        <Text style={{ color: COLORS.black, ...FONTS.body4 }}>Ver meu perfil</Text>
+                        <Text style={{ color: COLORS.black, ...FONTS.h3 }}>{googleData.given_name ? googleData.given_name : 'Nome teste'}</Text>
+                        <Text style={{ color: COLORS.black, ...FONTS.body4 }}>{googleData.family_name ? googleData.family_name : 'Sobrenome teste 2'}</Text>
                     </View>
                 </TouchableOpacity>
 

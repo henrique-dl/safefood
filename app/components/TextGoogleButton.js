@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import * as AuthSession from 'expo-auth-session';
 
-
 import { FONTS, COLORS, icons2 } from '../constants';
+
+export let googleData = {};
 
 const TextGoogleButton = ({
     containerStyle,
@@ -22,6 +23,11 @@ const TextGoogleButton = ({
 
             const { type, params } = await AuthSession.startAsync({ authUrl });
 
+            if (type == 'success') {
+                const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`)
+                googleData = await response.json();
+                console.log(googleData);
+            }
 
         } catch (error) {
             console.log(error);

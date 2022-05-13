@@ -10,5 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 
+.client_secret_556033828524-0p5bugvus75j9jh71r384suq5qhkct1b.apps.googleusercontent.com.json
+
 # macOS
 .DS_Store

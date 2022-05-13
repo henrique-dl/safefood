@@ -9,9 +9,6 @@ import { FormInput, CustomSwitch, TextButton, TextGoogleButton } from '../../com
 import { utils } from '../../utils'; 
 
 const SignIn = ({ navigation }) => {
-
-    
-
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [emailError, setEmailError] = React.useState('')
@@ -147,7 +144,7 @@ const SignIn = ({ navigation }) => {
                         borderWidth: 1,
                         borderColor: COLORS.darkGray
                     }}  
-                    label='Continue com Googlse'
+                    label='Continue com Google'
                     labelStyle={{
                         marginLeft: SIZES.radius,
                         color: COLORS.black
