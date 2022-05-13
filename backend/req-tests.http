@@ -2,11 +2,26 @@
 
 # get {{hostname}}
 
-post http://localhost:3333/user
-Content-Type: application/json
+# post http://localhost:3333/user
+# Content-Type: application/json
 
-{
-  "st_nome": "Theo",
-  "st_email": "theo@email.com",
-  "st_senha": "123"
-}
+# {
+#   "st_nome": "Theo",
+#   "st_email": "theo@email.com",
+#   "st_senha": "123"
+# }
+
+# get http://localhost:3333/users
+
+# get http://localhost:3333/user/2
+
+# put http://localhost:3333/user/2
+# Content-Type: application/json
+
+# {
+#   "st_nome": "Vitória",
+#   "st_email": "vitoria@email.com",
+#   "st_senha": "1234"
+# }
+
+delete http://localhost:3333/user/3
