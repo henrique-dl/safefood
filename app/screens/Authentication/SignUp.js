@@ -4,7 +4,7 @@ import { Picker } from '@react-native-picker/picker';
 
 import { AuthLayout } from '../';
 import { FONTS, SIZES, COLORS, icons2 } from '../../constants';
-import { FormInput, TextButton, TextIconButton } from '../../components';
+import { FormInput, TextButton, TextGoogleButton } from '../../components';
 import { utils } from '../../utils';
 
 const SignUp = ({ navigation }) => {
@@ -18,7 +18,7 @@ const SignUp = ({ navigation }) => {
     const [usernameError, setUsernameError] = React.useState('')
     const [passwordError, setPasswordError] = React.useState('')
 
-    const [signUpType, setSignUpType] = React.useState('');
+    const [signUpType, setSignUpType] = React.useState('PF');
     const [address, setAddress] = React.useState('');
     const [cnpj, setCnpj] = React.useState('');
     const [number, setNumber] = React.useState('');
@@ -290,7 +290,7 @@ const SignUp = ({ navigation }) => {
 
 
                     {/* Google Auth */}
-                    <TextIconButton
+                    <TextGoogleButton
                         containerStyle={{
                         height: 50,
                         alignItems: 'center',

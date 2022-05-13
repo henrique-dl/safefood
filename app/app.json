@@ -2,6 +2,7 @@
   "expo": {
     "name": "SafeFood",
     "slug": "SafeFood",
+    "scheme": "safefood",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +23,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 0,
+      "versionCode": 1,
       "package": "com.tcc.safefood",
       "permissions": [
         "com.google.android.c2dm.permission.RECEIVE",

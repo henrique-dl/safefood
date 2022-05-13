@@ -4,11 +4,13 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { AuthLayout } from '../';
 import { FONTS, SIZES, COLORS, icons, icons2, images } from '../../constants';
 
-import { FormInput, CustomSwitch, TextButton, TextIconButton } from '../../components';
+import { FormInput, CustomSwitch, TextButton, TextGoogleButton } from '../../components';
 
 import { utils } from '../../utils'; 
 
 const SignIn = ({ navigation }) => {
+
+    
 
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
@@ -135,7 +137,7 @@ const SignIn = ({ navigation }) => {
                 />
 
                 {/* Google Auth */}
-                <TextIconButton
+                <TextGoogleButton
                     containerStyle={{
                         height: 50,
                         alignItems: 'center',
@@ -145,12 +147,11 @@ const SignIn = ({ navigation }) => {
                         borderWidth: 1,
                         borderColor: COLORS.darkGray
                     }}  
-                    label='Continue com Google'
+                    label='Continue com Googlse'
                     labelStyle={{
                         marginLeft: SIZES.radius,
                         color: COLORS.black
                     }}
-                    onPress={() => console.log('Google')}
                 />
 
                 {/* Sign Up */}

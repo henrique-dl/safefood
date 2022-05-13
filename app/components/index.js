@@ -1,11 +1,11 @@
 import CustomSwitch from './CustomSwitch';
 import FormInput from './FormInput';
 import TextButton from './TextButton';
-import TextIconButton from './TextIconButton';
+import TextGoogleButton from './TextGoogleButton';
 
 export {
     CustomSwitch,
     FormInput,
     TextButton,
-    TextIconButton
+    TextGoogleButton
 }
