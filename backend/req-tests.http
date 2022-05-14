@@ -24,4 +24,4 @@
 #   "st_senha": "1234"
 # }
 
-delete http://localhost:3333/user/3
+# delete http://localhost:3333/user/3

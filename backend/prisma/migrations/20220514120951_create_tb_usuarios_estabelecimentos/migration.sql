@@ -13,6 +13,7 @@ CREATE TABLE "tb_estabelecimento" (
     "st_nome" TEXT NOT NULL,
     "st_email" TEXT NOT NULL,
     "st_senha" TEXT NOT NULL,
+    "st_endereco" TEXT,
     "cnpj" TEXT,
     "telefone" TEXT,
     "dt_cadastro" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP

@@ -23,6 +23,7 @@ model tb_estabelecimento {
   st_nome            String
   st_email           String   @unique
   st_senha           String
+  st_endereco        String?
   cnpj               String?  @unique
   telefone           String?
   dt_cadastro        DateTime @default(now())
