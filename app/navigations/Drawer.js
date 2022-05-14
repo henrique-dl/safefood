@@ -5,8 +5,25 @@ import { MainLayout } from '../screens';
 import Tabs from './Tabs'
 import { COLORS, FONTS, SIZES, constants, icons2, icons, images } from '../constants';
 import { googleData } from '../components/TextGoogleButton';
+import { api } from '../libs/api';
 
 const Drawer = createDrawerNavigator()
+
+let userData = {};
+
+var data = new Date();
+var dataAtual = String(data.getDate()).padStart(2, '0') + '/' + 
+String(data.getMonth() + 1).padStart(2, '0') + '/' + data.getFullYear();
+
+api.get('/user/5')
+.then(function (response) {
+    userData = response.data;
+    console.log(userData)
+})
+.catch(function (error) {
+    console.log(error);
+})
+
 
 const CustomDrawerItem = ({ label, icon }) => {
     return (
@@ -43,7 +60,6 @@ const CustomDrawerItem = ({ label, icon }) => {
 }
 
 const CustomDrawerContent = ({ navigation }) => {
-    console.log(googleData)
     return (
         <DrawerContentScrollView
             scrollEnabled={true}
@@ -103,8 +119,8 @@ const CustomDrawerContent = ({ navigation }) => {
                             marginLeft: SIZES.radius
                         }}
                     >
-                        <Text style={{ color: COLORS.black, ...FONTS.h3 }}>{googleData.given_name ? googleData.given_name : 'Nome teste'}</Text>
-                        <Text style={{ color: COLORS.black, ...FONTS.body4 }}>{googleData.family_name ? googleData.family_name : 'Sobrenome teste 2'}</Text>
+                        <Text style={{ color: COLORS.black, ...FONTS.h3 }}>{googleData.given_name ? googleData.given_name : userData.st_nome}</Text>
+                        <Text style={{ color: COLORS.black, ...FONTS.body4 }}>{googleData.family_name ? googleData.family_name : dataAtual}</Text>
                     </View>
                 </TouchableOpacity>
 

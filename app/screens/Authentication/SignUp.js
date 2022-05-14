@@ -6,6 +6,7 @@ import { AuthLayout } from '../';
 import { FONTS, SIZES, COLORS, icons2 } from '../../constants';
 import { FormInput, TextButton, TextGoogleButton } from '../../components';
 import { utils } from '../../utils';
+import { api } from '../../libs/api';
 
 const SignUp = ({ navigation }) => {
 
@@ -22,6 +23,7 @@ const SignUp = ({ navigation }) => {
     const [address, setAddress] = React.useState('');
     const [cnpj, setCnpj] = React.useState('');
     const [number, setNumber] = React.useState('');
+    const [registerError, setRegisterError] = React.useState('');
 
     function isEnableSignUp() {
         if (signUpType == 'PF') {
@@ -31,6 +33,29 @@ const SignUp = ({ navigation }) => {
             return email != '' && username != '' && password != '' &&
             emailError == '' && passwordError == '' && usernameError == ''
             && address != '' && cnpj != '' && number != ''
+        }
+    }
+
+    async function register() {
+        if (isEnableSignUp()) {
+            await api.post('/user', {
+                st_nome: username,
+                st_email: email,
+                st_senha: password
+            })
+            .then(function (response) {
+                if (response.status == 200 
+                    && (!response.data.error || response.data.error === 0)) {
+                    navigation.navigate('MainScreen');
+                } 
+
+                if (response.data.error) {
+                    setRegisterError(response.data.error);
+                }
+            })
+            .catch(function (error) {
+                setRegisterError(`Erro: ${error.message}`)
+            });
         }
     }
 
@@ -80,8 +105,6 @@ const SignUp = ({ navigation }) => {
                         </Picker>
                     </View>
                     {/* TO DO */}
-        
-
 
                     <FormInput
                         label='Email'
@@ -273,6 +296,16 @@ const SignUp = ({ navigation }) => {
                         }
                     />
 
+                    <Text
+                        style={{
+                            textAlign: 'center',
+                            marginTop: SIZES.padding,
+                            color: COLORS.red
+                        }}
+                    >
+                        {registerError}
+                    </Text>
+
                     {/* Sign Up & Sign In */}
                     <TextButton
                         label='Cadastrar'
@@ -280,12 +313,12 @@ const SignUp = ({ navigation }) => {
                         buttonContainerStyle={{
                             height: 55,
                             alginItems: 'center',
-                            marginTop: 30,
+                            marginTop: 15,
                             borderRadius: SIZES.radius,
                             backgroundColor: isEnableSignUp() ? COLORS.primary
                             : COLORS.transparentPrimary
                         }}
-                        onPress={() => navigation.navigate('MainScreen')}
+                        onPress={() => register()}
                     />
 
 

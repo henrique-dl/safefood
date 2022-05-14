@@ -2,23 +2,23 @@ const onboarding_screens = [
     {
         id: 1,
         backgroundImage: require("../assets/images/background_01.png"),
-        bannerImage: require("../assets/images/favourite_food.png"),
-        title: "Encontre seu estabelecimento",
+        bannerImage: require("../assets/onboardImages/onboardScreen1.png"),
+        title: "Encontre os melhores lugares",
         description: "Tenha acesso aos melhores restaurantes para portadores da doença celíaca do DF"
     },
     {
         id: 2,
         backgroundImage: require("../assets/images/background_02.png"),
-        bannerImage: require("../assets/images/hot_delivery.png"),
-        title: "Cadastre seu estabelecimento",
-        description: "Tem algum estabelecimento que se encaixe nas normas do regulamento? faça seu cadastro!"
+        bannerImage: require("../assets/onboardImages/onboardScreen2.png"),
+        title: "Escolha um prato delicioso",
+        description: "Aqui você terá acesso aos melhores pratos com os melhores ingredientes feitos para você!"
     },
     {
         id: 3,
         backgroundImage: require("../assets/images/background_01.png"),
-        bannerImage: require("../assets/images/great_food.png"),
+        bannerImage: require("../assets/onboardImages/onboardScreen3.png"),
         title: "Ajude com a avaliação",
-        description: "É possível avaliar estabelecimentos além de favoritar seu local preferido"
+        description: "Ajude outros usuários contando como foi sua experiência nos estabelecimentos"
     }
 ]
 

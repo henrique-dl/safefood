@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, ImageBackground, Image, Animated } from 'react-native';
-import { backgroundColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { constants, images, FONTS, SIZES, COLORS } from '../../constants';
 import { TextButton } from '../../components';
 
@@ -23,7 +22,7 @@ const OnBoarding = ({ navigation }) => {
                 style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
                 }}
             >
                 {
@@ -68,7 +67,8 @@ const OnBoarding = ({ navigation }) => {
                     left: 0,
                     right: 0,
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    elevation: 1
                 }}
             >
                 <Image
@@ -87,14 +87,14 @@ const OnBoarding = ({ navigation }) => {
         return (
             <View
                 style={{
-                    height: 160
+                    height: 160,
                 }}
             >
                 {/* Pagination / Dots  */}
                 <View
                     style={{
                         flex: 1,
-                        justifyContent: 'center'
+                        justifyContent: 'center',
                     }}
                 >
                     <Dots />
@@ -169,7 +169,8 @@ const OnBoarding = ({ navigation }) => {
             style={{
                 flex: 1,
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                backgroundColor: '#ffffff'
             }}
         >
             {renderHeaderLogo()}
