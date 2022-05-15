@@ -15,7 +15,7 @@ var data = new Date();
 var dataAtual = String(data.getDate()).padStart(2, '0') + '/' + 
 String(data.getMonth() + 1).padStart(2, '0') + '/' + data.getFullYear();
 
-api.get('/user/5')
+api.get('/usuarios/5')
 .then(function (response) {
     userData = response.data;
     console.log(userData)

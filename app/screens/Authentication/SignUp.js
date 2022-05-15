@@ -22,7 +22,7 @@ const SignUp = ({ navigation }) => {
     const [signUpType, setSignUpType] = React.useState('PF');
     const [address, setAddress] = React.useState('');
     const [cnpj, setCnpj] = React.useState('');
-    const [number, setNumber] = React.useState('');
+    const [telephone, setTelephone] = React.useState('');
     const [registerError, setRegisterError] = React.useState('');
 
     function isEnableSignUp() {
@@ -32,30 +32,54 @@ const SignUp = ({ navigation }) => {
         } else {
             return email != '' && username != '' && password != '' &&
             emailError == '' && passwordError == '' && usernameError == ''
-            && address != '' && cnpj != '' && number != ''
+            && address != '' && cnpj != '' && telephone != ''
         }
     }
 
     async function register() {
         if (isEnableSignUp()) {
-            await api.post('/user', {
-                st_nome: username,
-                st_email: email,
-                st_senha: password
-            })
-            .then(function (response) {
-                if (response.status == 200 
-                    && (!response.data.error || response.data.error === 0)) {
-                    navigation.navigate('MainScreen');
-                } 
-
-                if (response.data.error) {
-                    setRegisterError(response.data.error);
-                }
-            })
-            .catch(function (error) {
-                setRegisterError(`Erro: ${error.message}`)
-            });
+            if (signUpType == 'PF') {
+                await api.post('/usuarios', {
+                    st_nome: username,
+                    st_email: email,
+                    st_senha: password
+                })
+                .then(function (response) {
+                    if (response.status == 200 
+                        && (!response.data.error || response.data.error === 0)) {
+                        navigation.navigate('MainScreen');
+                    } 
+    
+                    if (response.data.error) {
+                        setRegisterError(response.data.error);
+                    }
+                })
+                .catch(function (error) {
+                    setRegisterError(`Erro: ${error.message}`)
+                });
+            } else {
+                await api.post('/estabelecimentos', {
+                    st_nome: username,
+                    st_email: email,
+                    st_senha: password,
+                    st_endereco: address,
+                    cnpj: cnpj,
+                    telefone: telephone
+                })
+                .then(function (response) {
+                    if (response.status == 200 
+                        && (!response.data.error || response.data.error === 0)) {
+                        navigation.navigate('MainScreen');
+                    } 
+    
+                    if (response.data.error) {
+                        setRegisterError(response.data.error);
+                    }
+                })
+                .catch(function (error) {
+                    setRegisterError(`Erro: ${error.message}`)
+                });
+            }
         }
     }
 
@@ -237,7 +261,7 @@ const SignUp = ({ navigation }) => {
                                     marginTop: SIZES.radius
                                 }}
                                 onChange={(value) => {
-                                    setNumber(value)
+                                    setTelephone(value)
                                 }}
                                 appendComponent={
                                     <View
@@ -246,13 +270,13 @@ const SignUp = ({ navigation }) => {
                                         }}
                                     >
                                         <Image
-                                            source={number == '' || (number != '')
+                                            source={telephone == '' || (telephone != '')
                                             ? icons2.correct : icons2.cross}
                                             style={{
                                                 height: 20,
                                                 width: 20,
-                                                tintColor: number == '' ? COLORS.gray 
-                                                : (number != '') ? COLORS.green : COLORS.red
+                                                tintColor: telephone == '' ? COLORS.gray 
+                                                : (telephone != '') ? COLORS.green : COLORS.red
                                             }}
                                         />
                                     </View>
