@@ -2,7 +2,9 @@
 
 ## Sobre
 
-Aplicativo desenvolvido utilizando o framework javascript React.js com Expo, API Rest em Node.js e banco de dados SQL.
+Aplicativo desenvolvido com a proposta de trazer uma solução para pessoas portadoras da doença celíaca as quais necessitam de um ambiente controlado e livre de contaminação direta do glúten.
+
+Ao acessar o aplicativo, você terá uma listagens de estabelecimentos que assinaram um termo de compromisso para garantir a segurança e evitar a contaminação cruzada, tão temina pelos celíacos, facilitando o encontro desses estabelecimentos poupando o deslocamento até o local ou o contato telefonico para cada estabelecimento.
 
 ## Instação
 
@@ -10,3 +12,7 @@ Aplicativo desenvolvido utilizando o framework javascript React.js com Expo, API
 - No terminal, navegue até a raiz do projeto (cd tcc) e execute os seguintes comandos respectivamente:
   - `yarn install` para baixar todas as dependências do Javascript (package.json);
   - `yarn start` para executar o projeto localmente.
+
+## Tecnologias
+
+Aplicativo desenvolvido utilizando o framework javascript React.js com Expo, API Rest em Node.js e banco de dados SQL.
