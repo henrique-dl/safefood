@@ -47,7 +47,7 @@ const SignUp = ({ navigation }) => {
                 .then(function (response) {
                     if (response.status == 200 
                         && (!response.data.error || response.data.error === 0)) {
-                        navigation.navigate('MainScreen');
+                            navigation.navigate('MainScreen');
                     } 
     
                     if (response.data.error) {

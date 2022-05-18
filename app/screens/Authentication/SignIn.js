@@ -5,8 +5,10 @@ import { AuthLayout } from '../';
 import { FONTS, SIZES, COLORS, icons, icons2, images } from '../../constants';
 
 import { FormInput, CustomSwitch, TextButton, TextGoogleButton } from '../../components';
-
 import { utils } from '../../utils'; 
+import { api } from '../../libs/api';
+
+export let userData = {};
 
 const SignIn = ({ navigation }) => {
     const [email, setEmail] = React.useState('')
@@ -15,9 +17,53 @@ const SignIn = ({ navigation }) => {
 
     const [showPass, setShowPass] = React.useState(false)
     const [saveMe, setSaveMe] = React.useState(false)
+    const [logInError, setLogInError] = React.useState('');
 
     function isEnableSignIn() {
         return email != '' && password != '' && emailError == ''
+    }
+
+    async function logIn() {
+        if (isEnableSignIn()) {
+            await api.get(`/usuarios/${email}`)
+            .then(function (response) {
+                if (response.status == 200 
+                    && (!response.data.error || response.data.error === 0)) {
+                        userData = response.data;
+                        // console.log(response.data);
+                        navigation.navigate('MainScreen');
+                } 
+
+                if (response.data.error) {
+                    userData = response.data;
+                    setLogInError(response.data.error);
+                }
+            })
+            .catch(function (error) {
+                setLogInError(`Erro: ${error.message}`)
+            });
+        }
+
+        if (userData.error) {
+            await api.get(`/estabelecimentos/${email}`)
+            .then(function (response) {
+                if (response.status == 200 
+                    && (!response.data.error || response.data.error === 0)) {
+                        userData = response.data;
+                        navigation.navigate('MainScreen');
+                } 
+
+                if (response.data.error) {
+                    userData = response.data;
+                    setLogInError(response.data.error);
+                }
+            })
+            .catch(function (error) {
+                setLogInError(`Erro: ${error.message}`)
+            });
+        }
+        
+        console.log(userData);
     }
 
     return (
@@ -118,6 +164,16 @@ const SignIn = ({ navigation }) => {
                     />
                 </View>
 
+                <Text
+                    style={{
+                        textAlign: 'center',
+                        marginTop: SIZES.padding,
+                        color: COLORS.red
+                    }}
+                >
+                    {logInError}
+                </Text>
+
                 {/* Sign In */}
                 <TextButton 
                     label='Entrar'
@@ -125,12 +181,12 @@ const SignIn = ({ navigation }) => {
                     buttonContainerStyle={{
                         height: 55,
                         alignItems: 'center',
-                        marginTop: 35,
+                        marginTop: 15,
                         borderRadius: SIZES.radius,
                         backgroundColor: isEnableSignIn() ? COLORS.primary
                         : COLORS.transparentPrimary
                     }}
-                    onPress={() => navigation.navigate('MainScreen')}
+                    onPress={() => logIn()}
                 />
 
                 {/* Google Auth */}
