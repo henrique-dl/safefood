@@ -37,9 +37,9 @@ export default {
 
   async findUser(req, res) {
     try {
-      const {id} = req.params;
+      const {email} = req.params;
 
-      const user = await prisma.tb_usuario.findUnique({ where: {id_usuario: Number(id)} });
+      const user = await prisma.tb_usuario.findUnique({ where: {st_email: email} });
 
       if (!user) {
         return res.json({ error: 'Não foi possível encontrar esse usuário.'})

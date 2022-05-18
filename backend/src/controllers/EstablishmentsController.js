@@ -42,9 +42,9 @@ export default {
 
   async findEstablishment(req, res) {
     try {
-      const {id} = req.params;
+      const {email} = req.params;
 
-      const estabelecimento = await prisma.tb_estabelecimento.findUnique({ where: {id_estabelecimento: Number(id)} });
+      const estabelecimento = await prisma.tb_estabelecimento.findUnique({ where: {st_email: email} });
 
       if (!estabelecimento) {
         return res.json({ error: 'Não foi possível encontrar esse estabelecimento.'})
