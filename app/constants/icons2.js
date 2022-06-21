@@ -24,6 +24,8 @@ const star = require("../assets/icons2/star.png")
 const wallet = require("../assets/icons2/wallet.png")
 const help = require("../assets/icons2/help.png")
 const google = require("../assets/icons2/google.png")
+const navigator1 = require('../assets/icons2/navigator1.png')
+const location_pin = require('../assets/icons2/location_pin.png')
 
 export default {
     coupon,
@@ -52,4 +54,6 @@ export default {
     star,
     wallet,
     help,
+    navigator1,
+    location_pin
 }

@@ -31,6 +31,7 @@ const sushi = require("../assets/images/sushi.jpg");
 const teh_c_peng = require("../assets/images/teh-c-peng.jpg");
 const tomato_pasta = require("../assets/images/tomato-pasta.jpg");
 const onboarding = require('../assets/images/onboarding.jpeg');
+const human_profile = require('../assets/images/human_profile.jpg');
 
 export default {
     avatar_1,
@@ -49,6 +50,8 @@ export default {
     honey_mustard_chicken_burger,
     hot_dog_restaurant,
     ice_kacang,
+
+    human_profile,
 
     japanese_restaurant,
     kek_lapis_shop,

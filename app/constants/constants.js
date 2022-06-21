@@ -128,11 +128,14 @@ const tags = [
     }
 ]
 
+const GOOGLE_MAP_API_KEY = "AIzaSyAA9ysb0SKpLQm4yEu-RhuPyVXzbavZFek"
+
 export default {
     onboarding_screens,
     screens,
     bottom_tabs,
     delivery_time,
     ratings,
-    tags
+    tags,
+    GOOGLE_MAP_API_KEY
 }

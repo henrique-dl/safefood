@@ -7,6 +7,7 @@ import { FONTS, SIZES, COLORS, icons, icons2, images } from '../../constants';
 import { FormInput, CustomSwitch, TextButton, TextGoogleButton } from '../../components';
 import { utils } from '../../utils'; 
 import { api } from '../../libs/api';
+import { useAuth } from '../../contexts/auth';
 
 export let userData = {};
 
@@ -23,48 +24,57 @@ const SignIn = ({ navigation }) => {
         return email != '' && password != '' && emailError == ''
     }
 
-    async function logIn() {
-        if (isEnableSignIn()) {
-            await api.get(`/usuarios/${email}`)
-            .then(function (response) {
-                if (response.status == 200 
-                    && (!response.data.error || response.data.error === 0)) {
-                        userData = response.data;
-                        // console.log(response.data);
-                        navigation.navigate('MainScreen');
-                } 
+    const { signed, user, signIn} = useAuth();
 
-                if (response.data.error) {
-                    userData = response.data;
-                    setLogInError(response.data.error);
-                }
-            })
-            .catch(function (error) {
-                setLogInError(`Erro: ${error.message}`)
-            });
-        }
+    console.log(signed);
+    console.log(user);
 
-        if (userData.error) {
-            await api.get(`/estabelecimentos/${email}`)
-            .then(function (response) {
-                if (response.status == 200 
-                    && (!response.data.error || response.data.error === 0)) {
-                        userData = response.data;
-                        navigation.navigate('MainScreen');
-                } 
-
-                if (response.data.error) {
-                    userData = response.data;
-                    setLogInError(response.data.error);
-                }
-            })
-            .catch(function (error) {
-                setLogInError(`Erro: ${error.message}`)
-            });
-        }
-        
-        console.log(userData);
+    function handleSignIn() {
+        signIn();
     }
+
+    // async function logIn() {
+    //     if (isEnableSignIn()) {
+    //         await api.get(`/usuarios/${email}`)
+    //         .then(function (response) {
+    //             if (response.status == 200 
+    //                 && (!response.data.error || response.data.error === 0)) {
+    //                     userData = response.data;
+    //                     // console.log(response.data);
+    //                     navigation.navigate('MainScreen');
+    //             } 
+
+    //             if (response.data.error) {
+    //                 userData = response.data;
+    //                 setLogInError(response.data.error);
+    //             }
+    //         })
+    //         .catch(function (error) {
+    //             setLogInError(`Erro: ${error.message}`)
+    //         });
+    //     }
+
+    //     if (userData.error) {
+    //         await api.get(`/estabelecimentos/${email}`)
+    //         .then(function (response) {
+    //             if (response.status == 200 
+    //                 && (!response.data.error || response.data.error === 0)) {
+    //                     userData = response.data;
+    //                     navigation.navigate('MainScreen');
+    //             } 
+
+    //             if (response.data.error) {
+    //                 userData = response.data;
+    //                 setLogInError(response.data.error);
+    //             }
+    //         })
+    //         .catch(function (error) {
+    //             setLogInError(`Erro: ${error.message}`)
+    //         });
+    //     }
+        
+    //     console.log(userData);
+    // }
 
     return (
         <AuthLayout
@@ -186,7 +196,7 @@ const SignIn = ({ navigation }) => {
                         backgroundColor: isEnableSignIn() ? COLORS.primary
                         : COLORS.transparentPrimary
                     }}
-                    onPress={() => logIn()}
+                    onPress={() => handleSignIn()}
                 />
 
                 {/* Google Auth */}

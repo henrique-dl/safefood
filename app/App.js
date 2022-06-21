@@ -2,11 +2,13 @@ import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native'
+import { AuthProvider } from './contexts/auth';
 import { useFonts } from 'expo-font';
 
 import { OnBoarding, SignIn, SignUp, ForgotPassword, Otp, Home } from './screens'
 
 import MainScreen from './navigations/Drawer';
+import Routes from './routes';
 
 const Stack = createStackNavigator();
 
@@ -17,57 +19,19 @@ const App = () => {
       "Roboto-Bold" : require('./assets/fonts/Roboto-Bold.ttf'),
       "Roboto-Regular" : require('./assets/fonts/Roboto-Regular.ttf'),
 
-    })
+    });
     
-    if(!loaded){
+    if (!loaded) {
       return null;
     }
 
-    
-  return (
-          <NavigationContainer>
-              {/* <Stack.Navigator
-                  screenOptions={{
-                      headerShown: false
-                  }}
-                  initialRouteName={'Home'}
-              >
-                  <Stack.Screen name="Home" component={Tabs} />
-                  <Stack.Screen name="Restaurant" component={CustomDrawer} />
-              </Stack.Navigator> */}
-
-              {/* <CustomDrawer /> */}
-
-
-               <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
-                initialRouteName={'OnBoarding'}
-            >
-               <Stack.Screen
-                    name="OnBoarding"
-                    component={OnBoarding}
-                />
-
-                <Stack.Screen
-                    name="SignIn"
-                    component={SignIn}
-                />
-
-                <Stack.Screen
-                    name="SignUp"
-                    component={SignUp}
-                />
-
-                 <Stack.Screen
-                    name="MainScreen"
-                    component={MainScreen}
-                />
-
-            </Stack.Navigator>
-          </NavigationContainer>
-      )
+    return (
+        <NavigationContainer>
+            <AuthProvider>
+                <Routes />
+            </AuthProvider>
+        </NavigationContainer>
+    );
 }
 
 export default App;
