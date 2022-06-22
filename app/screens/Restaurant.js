@@ -216,7 +216,7 @@ const Restaurant = ({ route, navigation }) => {
   function renderDots() {
     const dotPosition = Animated.divide(scrollX, SIZES.width);
     return (
-      <View style={{ height: 30, paddingBottom: 100 }}>
+      <View style={{ height: 30, paddingBottom: 20 }}>
         <View
           style={{
             flexDirection: "row",
@@ -263,11 +263,44 @@ const Restaurant = ({ route, navigation }) => {
     );
   }
 
+  function renderNavigationButton() {
+    return (
+      <View
+        style={{
+          marginBottom: 90,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            width: SIZES.width * 0.9,
+            padding: SIZES.padding,
+            backgroundColor: COLORS.primary,
+            alignItems: "center",
+            borderRadius: SIZES.radius,
+          }}
+          onPress={() =>
+            navigation.navigate("OrderDelivery", {
+              restaurant: restaurant,
+              currentLocation: currentLocation,
+            })
+          }
+        >
+          <Text style={{ color: COLORS.white, ...FONTS.h2 }}>
+            Ver localização
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       {renderHeader()}
       {renderFoodInfo()}
       {renderDots()}
+      {renderNavigationButton()}
     </SafeAreaView>
   );
 };

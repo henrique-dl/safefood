@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Platform,
   PermissionsAndroid,
+  ActivityIndicator,
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
@@ -26,36 +27,65 @@ import {
   constants,
 } from "../../constants";
 import { utils } from "../../utils";
+import { block, set } from "react-native-reanimated";
 
 const Map = ({ navigation }) => {
   const mapView = React.useRef();
-  const [region, setRegion] = React.useState(null);
+  const [region, setRegion] = React.useState({});
   const [toLoc, setToLoc] = React.useState(null);
   const [fromLoc, setFromLoc] = React.useState(null);
+  const [streetName, setStreetName] = React.useState(null);
   const [angle, setAngle] = React.useState(0);
 
   const [isReady, setIsReady] = React.useState(false);
   const [duration, setDuration] = React.useState("");
 
+  const [location, setLocation] = React.useState(null);
+  const [errorMsg, setErrorMsg] = React.useState(null);
+
   React.useEffect(() => {
-    let initialRegion = {
-      latitude: -15.838815144953708,
-      longitude: -48.013806715340145,
-      latitudeDelta: 0.02,
-      longitudeDelta: 0.02,
-    };
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permissão para acessar localização recusada");
+        return;
+      }
 
-    let destination = {
-      latitude: -15.840064042324233,
-      longitude: -48.022379055273724,
-    };
+      let location = await Location.getCurrentPositionAsync({});
+      setRegion({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02,
+      });
+      setFromLoc({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02,
+      });
 
-    setToLoc(destination);
-    // setFromLoc(dummyData.fromLocs[1])
-    setFromLoc(initialRegion);
-
-    setRegion(initialRegion);
+      setLocation(location);
+    })();
+    let text = "Carregando localização...";
+    setErrorMsg(text);
+    if (errorMsg) {
+      text = errorMsg;
+    } else if (location) {
+      text = JSON.stringify(location);
+    }
   }, []);
+
+  console.log(region);
+
+  // let destination = {
+  //   latitude: -15.840064042324233,
+  //   longitude: -48.022379055273724,
+  // };
+
+  // setToLoc(destination);
+  // // setFromLoc(dummyData.fromLocs[1])
+  // setRegion(initialRegion);
 
   function renderMap() {
     return (
@@ -63,7 +93,7 @@ const Map = ({ navigation }) => {
         ref={mapView}
         style={{
           flex: 1,
-          marginBottom: 35,
+          marginBottom: 50,
         }}
         provider={PROVIDER_GOOGLE}
         initialRegion={region}
@@ -134,11 +164,26 @@ const Map = ({ navigation }) => {
       <Header navigation={navigation} />
 
       {/* {Map} */}
-      {renderMap()}
+
+      {location != null && region != null ? (
+        renderMap()
+      ) : (
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: "80%",
+            ...FONTS.body3,
+          }}
+        >
+          {errorMsg + "\n\n"}
+          {errorMsg == "Carregando localização..." && (
+            <ActivityIndicator size="large" color="#999" />
+          )}
+        </Text>
+      )}
       {/* Header Buttons */}
 
       {/* Footer / info */}
-      <Text>Map</Text>
     </View>
   );
 };

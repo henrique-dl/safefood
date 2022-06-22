@@ -112,9 +112,9 @@ const Home = ({ navigation }) => {
         },
         {
           menuId: 2,
-          name: "Frangão crocante com mostarda e mel",
+          name: "Frangão com mostarda e mel",
           photo: images.honey_mustard_chicken_burger,
-          description: "Frangão crocante com salada de repolho, mostarda e mel",
+          description: "Frangão com salada de repolho, mostarda e mel",
           calories: 250,
           price: 15,
         },

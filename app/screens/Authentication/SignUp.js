@@ -128,7 +128,7 @@ const SignUp = ({ navigation }) => {
         >
           {/* PICKER */}
           <Text style={{ color: COLORS.gray }}>
-            Você é um usuário ou dono de estabelecimento?
+            Deseja cadastrar ou procurar estabelecimentos?
           </Text>
           <View
             style={{
@@ -142,8 +142,8 @@ const SignUp = ({ navigation }) => {
               selectedValue={signUpType}
               onValueChange={(itemValue, itemIndex) => setSignUpType(itemValue)}
             >
-              <Picker.Item label="Sou usuário" value="PF" />
-              <Picker.Item label="Sou dono de um estabelecimento" value="PJ" />
+              <Picker.Item label="Encontrar estabelecimentos" value="PF" />
+              <Picker.Item label="Cadastrar estabelecimento" value="PJ" />
             </Picker>
           </View>
           {/* TO DO */}
