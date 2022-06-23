@@ -24,6 +24,8 @@ export const basket = require("../assets/icons/shopping-basket.png");
 export const star = require("../assets/icons/star.png");
 export const sushi = require("../assets/icons/sushi.png");
 export const user = require("../assets/icons/user.png");
+export const health_icon = require("../assets/icons/health_icon.png");
+export const bakery = require("../assets/icons/bakery.png");
 
 export default {
   back,
@@ -35,6 +37,7 @@ export default {
   fries,
   hamburger,
   hotdog,
+  bakery,
   like,
   list,
   location,
@@ -52,4 +55,5 @@ export default {
   sushi,
   user,
   burger_menu,
+  health_icon,
 };

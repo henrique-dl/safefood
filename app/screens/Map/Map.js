@@ -29,10 +29,10 @@ import {
 import { utils } from "../../utils";
 import { block, set } from "react-native-reanimated";
 
-const Map = ({ navigation }) => {
+const Map = ({ route, navigation }) => {
   const mapView = React.useRef();
   const [region, setRegion] = React.useState({});
-  const [toLoc, setToLoc] = React.useState(null);
+  const [toLocation, setToLocation] = React.useState(null);
   const [fromLoc, setFromLoc] = React.useState(null);
   const [streetName, setStreetName] = React.useState(null);
   const [angle, setAngle] = React.useState(0);
@@ -44,6 +44,12 @@ const Map = ({ navigation }) => {
   const [errorMsg, setErrorMsg] = React.useState(null);
 
   React.useEffect(() => {
+    if (route.params != null) {
+      let { restaurant, currentLocation } = route.params;
+      let toLoc = restaurant.location;
+      setToLocation(toLoc);
+    }
+
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -74,9 +80,7 @@ const Map = ({ navigation }) => {
     } else if (location) {
       text = JSON.stringify(location);
     }
-  }, []);
-
-  console.log(region);
+  }, [route.params]);
 
   // let destination = {
   //   latitude: -15.840064042324233,
@@ -109,10 +113,10 @@ const Map = ({ navigation }) => {
           />
         )}
 
-        {toLoc && (
+        {toLocation && (
           <Marker
-            key={"ToLoc"}
-            coordinate={toLoc}
+            key={"toLocation"}
+            coordinate={toLocation}
             tracksViewChanges={false}
             image={icons2.location_pin}
             anchor={{ x: 0.5, y: 0.5 }}
@@ -121,7 +125,7 @@ const Map = ({ navigation }) => {
 
         <MapViewDirections
           origin={fromLoc}
-          destination={toLoc}
+          destination={toLocation}
           apikey={constants.GOOGLE_MAP_API_KEY}
           strokeWidth={5}
           strokeColor={COLORS.primary}
@@ -177,7 +181,7 @@ const Map = ({ navigation }) => {
         >
           {errorMsg + "\n\n"}
           {errorMsg == "Carregando localização..." && (
-            <ActivityIndicator size="large" color="#999" />
+            <ActivityIndicator size="large" color={COLORS.primary} />
           )}
         </Text>
       )}

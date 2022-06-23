@@ -44,7 +44,12 @@ const Header = ({ navigation }) => {
           paddingRight: SIZES.padding * 2,
           justifyContent: "center",
         }}
-        onPress={() => navigation.navigate("Map")}
+        onPress={() =>
+          navigation.navigate("Map", {
+            restaurant: {},
+            currentLocation: {},
+          })
+        }
       >
         <Image
           source={icons.nearby}

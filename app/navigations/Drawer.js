@@ -207,7 +207,36 @@ const CustomDrawerContent = ({ navigation }) => {
             }}
           />
 
-          <CustomDrawerItem label="Locais" icon={icons2.location} />
+          <TouchableOpacity
+            style={{
+              marginBottom: 10,
+              flexDirection: "row",
+              height: 40,
+              marginBottom: SIZES.base,
+              alignItems: "center",
+              paddingLeft: SIZES.base,
+              borderRadius: SIZES.base,
+            }}
+            onPress={() => navigation.navigate("Map")}
+          >
+            <Image
+              source={icons2.location}
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: COLORS.black,
+              }}
+            />
+            <Text
+              style={{
+                color: COLORS.black,
+                ...FONTS.h3,
+                marginLeft: SIZES.padding,
+              }}
+            >
+              Localização
+            </Text>
+          </TouchableOpacity>
 
           <CustomDrawerItem label={constants.screens.help} icon={icons2.help} />
 

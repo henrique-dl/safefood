@@ -20,17 +20,13 @@ const Home = ({ navigation }) => {
   navigation = navigation;
   const initialCurrentLocation = {
     streetName: "Distrito Federal",
-    gps: {
-      latitude: 1.5496614931250685,
-      longitude: 110.36381866919922,
-    },
   };
 
   const categoryData = [
     {
       id: 1,
-      name: "Arroz",
-      icon: icons.rice_bowl,
+      name: "Hot Dog",
+      icon: icons.hotdog,
     },
     {
       id: 2,
@@ -39,8 +35,8 @@ const Home = ({ navigation }) => {
     },
     {
       id: 3,
-      name: "Hot Dogs",
-      icon: icons.hotdog,
+      name: "Padarias",
+      icon: icons.bakery,
     },
     {
       id: 4,
@@ -59,7 +55,7 @@ const Home = ({ navigation }) => {
     },
     {
       id: 7,
-      name: "Lanches",
+      name: "Salgados",
       icon: icons.fries,
     },
     {
@@ -87,15 +83,15 @@ const Home = ({ navigation }) => {
   const restaurantData = [
     {
       id: 1,
-      name: "Sra. Amêndoa Burger",
-      rating: 4.8,
-      categories: [5, 7],
-      priceRating: affordable,
-      photo: images.burger_restaurant_1,
-      administrativeCity: "Guará II",
+      name: "Senhora Amêndoa",
+      rating: 4.4,
+      categories: [7, 9, 10],
+      priceRating: expensive,
+      photo: images.sra_amendoa,
+      administrativeCity: "Asa Norte",
       location: {
-        latitude: 1.5347282806345879,
-        longitude: 110.35632207358996,
+        latitude: -15.73110853594763,
+        longitude: -47.894868264974825,
       },
       courier: {
         avatar: images.avatar_1,
@@ -104,25 +100,26 @@ const Home = ({ navigation }) => {
       menu: [
         {
           menuId: 1,
-          name: "Frangão turbinado",
-          photo: images.crispy_chicken_burger,
-          description: "Pão com gergelin, frango, queijo e alface",
-          calories: 200,
+          name: "Suavecito",
+          photo: images.suavecito,
+          description: "Smothies sabor morango e maracujá",
+          calories: 100,
           price: 15,
         },
         {
           menuId: 2,
-          name: "Frangão com mostarda e mel",
-          photo: images.honey_mustard_chicken_burger,
-          description: "Frangão com salada de repolho, mostarda e mel",
+          name: "Chocalate quente e torta",
+          photo: images.torta,
+          description: "Chocolate quente cremoso e seu pedaço de torta ",
           calories: 250,
-          price: 15,
+          price: 25,
         },
         {
           menuId: 3,
-          name: "Crispy Baked French Fries",
-          photo: images.baked_fries,
-          description: "Crispy Baked French Fries",
+          name: "Risole de abóbora com carne seca",
+          photo: images.risole,
+          description:
+            "Massa de mandioca com abóbora, queijo cheddar vaganita e carne seca desfiada",
           calories: 194,
           price: 8,
         },
@@ -130,15 +127,15 @@ const Home = ({ navigation }) => {
     },
     {
       id: 2,
-      name: "Sra. Amêndoa Pizza",
-      rating: 4.8,
-      categories: [2, 4, 6],
-      priceRating: expensive,
-      photo: images.pizza_restaurant,
-      administrativeCity: "Águas Claras",
+      name: "Padaria Seleve",
+      rating: 4.2,
+      categories: [3, 4, 9],
+      priceRating: fairPrice,
+      photo: images.seleve,
+      administrativeCity: "Asa Norte",
       location: {
-        latitude: 1.556306570595712,
-        longitude: 110.35504616746915,
+        latitude: -15.774958615837175,
+        longitude: -47.88816826257737,
       },
       courier: {
         avatar: images.avatar_2,
@@ -147,50 +144,51 @@ const Home = ({ navigation }) => {
       menu: [
         {
           menuId: 4,
-          name: "Hawaiian Pizza",
-          photo: images.hawaiian_pizza,
-          description: "Canadian bacon, homemade pizza crust, pizza sauce",
+          name: "Salada Jovem Guarda",
+          photo: images.salada_seleve,
+          description:
+            "Salada vegana leve e refrescante com sorvete de manjericão",
           calories: 250,
-          price: 15,
+          price: 25,
         },
         {
           menuId: 5,
-          name: "Tomato & Basil Pizza",
-          photo: images.pizza,
-          description:
-            "Fresh tomatoes, aromatic basil pesto and melted bocconcini",
-          calories: 250,
-          price: 20,
+          name: "Pães",
+          photo: images.pao_seleve,
+          description: "Pães sem glúten e sem lácteos",
+          calories: 100,
+          price: 10,
         },
         {
           menuId: 6,
-          name: "Tomato Pasta",
-          photo: images.tomato_pasta,
-          description: "Pasta with fresh tomatoes",
-          calories: 100,
-          price: 10,
+          name: "Espaguette com salmão",
+          photo: images.macarrao_seleve,
+          description:
+            "Espaguete de Palmito Pupunha, Salmão em Cubos, Tomate Cereja",
+          calories: 200,
+          price: 24,
         },
         {
           menuId: 7,
-          name: "Mediterranean Chopped Salad ",
-          photo: images.salad,
-          description: "Finely chopped lettuce, tomatoes, cucumbers",
-          calories: 100,
-          price: 10,
+          name: "Torta com sorvete",
+          photo: images.torta_seleve,
+          description: "Torta com sorvete vegano chocolate ou frutas vermelhas",
+          calories: 150,
+          price: 20,
         },
       ],
     },
     {
       id: 3,
-      name: "Sra. Amêndoa Hotdogs",
-      rating: 4.8,
-      categories: [3],
+      name: "Passos Sem Glúten",
+      rating: 4.5,
+      categories: [9],
       priceRating: expensive,
-      photo: images.hot_dog_restaurant,
-      administrativeCity: "Asa Norte",
+      photo: images.passos_sem_gluten,
+      administrativeCity: "Águas Claras",
       location: {
-        latitude: 1.5238753474714375,
-        longitude: 110.34261833833622,
+        latitude: -15.832968989923765,
+        longitude: -48.034748944484754,
       },
       courier: {
         avatar: images.avatar_3,
@@ -199,25 +197,25 @@ const Home = ({ navigation }) => {
       menu: [
         {
           menuId: 8,
-          name: "Chicago Style Hot Dog",
-          photo: images.chicago_hot_dog,
-          description: "Fresh tomatoes, all beef hot dogs",
-          calories: 100,
-          price: 20,
+          name: "Bolo de festa",
+          photo: images.bolo_passos_sem_gluten,
+          description: "Delicioso bolo de chocolate sem glúten",
+          calories: 346,
+          price: 50,
         },
       ],
     },
     {
       id: 4,
-      name: "Sra. Amêndoa Sushi",
-      rating: 4.8,
-      categories: [8],
+      name: "Nutri Bakery",
+      rating: 4.4,
+      categories: [3, 6],
       priceRating: expensive,
-      photo: images.japanese_restaurant,
+      photo: images.nutri_bakery,
       administrativeCity: "Asa Sul",
       location: {
-        latitude: 1.5578068150528928,
-        longitude: 110.35482523764315,
+        latitude: -15.813196994242716,
+        longitude: -47.89394244415947,
       },
       courier: {
         avatar: images.avatar_4,
@@ -226,25 +224,25 @@ const Home = ({ navigation }) => {
       menu: [
         {
           menuId: 9,
-          name: "Sushi sets",
-          photo: images.sushi,
-          description: "Fresh salmon, sushi rice, fresh juicy avocado",
-          calories: 100,
+          name: "Pizza sem glúten",
+          photo: images.pizza_nutri_bakery,
+          description: "Pizza vegana com ingredientes selecionados e frescos",
+          calories: 497,
           price: 50,
         },
       ],
     },
     {
       id: 5,
-      name: "Sra. Amêndoa Cuisine",
-      rating: 4.8,
-      categories: [1, 2],
-      priceRating: affordable,
-      photo: images.noodle_shop,
-      administrativeCity: "Taguatinga",
+      name: "Há Hamburgueria",
+      rating: 4.3,
+      categories: [5, 7, 10],
+      priceRating: fairPrice,
+      photo: images.ha_hamburgueria,
+      administrativeCity: "Sudoeste",
       location: {
-        latitude: 1.558050496260768,
-        longitude: 110.34743759630511,
+        latitude: -15.794281438234423,
+        longitude: -47.921111759243324,
       },
       courier: {
         avatar: images.avatar_4,
@@ -253,49 +251,51 @@ const Home = ({ navigation }) => {
       menu: [
         {
           menuId: 10,
-          name: "Kolo Mee",
-          photo: images.kolo_mee,
-          description: "Noodles with char siu",
-          calories: 200,
-          price: 5,
+          name: "Combos sem glúten",
+          photo: images.ha_hamburgueria_combos,
+          description: "Combo lanche e batata 100% glúten free",
+          calories: 550,
+          price: 57,
         },
         {
           menuId: 11,
-          name: "Sarawak Laksa",
-          photo: images.sarawak_laksa,
-          description: "Vermicelli noodles, cooked prawns",
-          calories: 300,
+          name: "Burger Tilápia",
+          photo: images.ha_hamburgueria_tilapia,
+          description:
+            "Hambúrguer de tilápia, sem glúten, sem leite e sem soja",
+          calories: 317,
           price: 8,
         },
         {
           menuId: 12,
-          name: "Nasi Lemak",
-          photo: images.nasi_lemak,
-          description: "A traditional Malay rice dish",
-          calories: 300,
-          price: 8,
+          name: "Trio Há Hamburgueria",
+          photo: images.ha_hamburgueria_trio,
+          description:
+            "Burguer de fraldinha, batata rústica e milk shake vegano",
+          calories: 675,
+          price: 68,
         },
         {
           menuId: 13,
-          name: "Nasi Briyani with Mutton",
-          photo: images.nasi_briyani_mutton,
-          description: "A traditional Indian rice dish with mutton",
-          calories: 300,
-          price: 8,
+          name: "Batata",
+          photo: images.ha_hamburgueria_batata,
+          description: "Batata livre de glúten, leite e soja",
+          calories: 230,
+          price: 18,
         },
       ],
     },
     {
       id: 6,
-      name: "Sra. Amêndoa Dessets",
-      rating: 4.9,
-      categories: [9, 10],
+      name: "Amaranto Cozinha Inclusiva",
+      rating: 4.8,
+      categories: [1, 7, 10],
       priceRating: affordable,
-      photo: images.kek_lapis_shop,
-      administrativeCity: "Sudoeste",
+      photo: images.amaranto,
+      administrativeCity: "Gama",
       location: {
-        latitude: 1.5573478487252896,
-        longitude: 110.35568783282145,
+        latitude: -16.013611558711755,
+        longitude: -48.06846553902774,
       },
       courier: {
         avatar: images.avatar_1,
@@ -304,27 +304,28 @@ const Home = ({ navigation }) => {
       menu: [
         {
           menuId: 12,
-          name: "Teh C Peng",
-          photo: images.teh_c_peng,
-          description: "Three Layer Teh C Peng",
-          calories: 100,
-          price: 2,
+          name: "Cachorro-quente",
+          photo: images.amaranto_hotdog,
+          description: "Cachorro-quente de salsicha suína, palmito e frango",
+          calories: 236,
+          price: 24,
         },
         {
           menuId: 13,
-          name: "ABC Ice Kacang",
+          name: "Sanduíche natural",
           photo: images.ice_kacang,
-          description: "Shaved Ice with red beans",
-          calories: 100,
-          price: 3,
+          description:
+            "Sanduíche 100% vegano com queijo, maionese alface e tomate",
+          calories: 187,
+          price: 21,
         },
         {
           menuId: 14,
-          name: "Kek Lapis",
-          photo: images.kek_lapis,
-          description: "Layer cakes",
-          calories: 300,
-          price: 20,
+          name: "Drink (não alcoólico)",
+          photo: images.amaranto_drink,
+          description: "Drink com camomila, água de coco e limão",
+          calories: 87,
+          price: 16,
         },
       ],
     },
@@ -343,11 +344,13 @@ const Home = ({ navigation }) => {
       a.categories.includes(category.id)
     );
 
-    console.log(restaurantList);
-
-    setRestaurants(restaurantList);
-
-    setSelectedCategory(category);
+    if (selectedCategory == category) {
+      setSelectedCategory(null);
+      setRestaurants(restaurantData);
+    } else {
+      setSelectedCategory(category);
+      setRestaurants(restaurantList);
+    }
   }
 
   function getCategoryNameById(id) {
@@ -356,65 +359,6 @@ const Home = ({ navigation }) => {
     if (category.length > 0) return category[0].name;
 
     return "";
-  }
-
-  function renderHeader() {
-    return (
-      <View style={{ flexDirection: "row", height: 50, marginTop: 35 }}>
-        <TouchableOpacity
-          style={{
-            width: 50,
-            paddingLeft: SIZES.padding * 2,
-            justifyContent: "center",
-          }}
-          onPress={() => navigation.toggleDrawer()}
-        >
-          <Image
-            source={icons.burger_menu}
-            resizeMode="contain"
-            style={{
-              width: 30,
-              height: 30,
-            }}
-          />
-        </TouchableOpacity>
-
-        <View
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-          <View
-            style={{
-              width: "70%",
-              height: "100%",
-              backgroundColor: COLORS.lightGray3,
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: SIZES.radius,
-            }}
-          >
-            <Text style={{ ...FONTS.h3 }}>{currentLocation.streetName}</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={{
-            width: 50,
-            paddingRight: SIZES.padding * 2,
-            justifyContent: "center",
-          }}
-          onPress={() => navigation.navigate("Map")}
-        >
-          <Image
-            source={icons.nearby}
-            resizeMode="contain"
-            style={{
-              width: 30,
-              height: 30,
-            }}
-          />
-        </TouchableOpacity>
-      </View>
-    );
   }
 
   function renderMainCategories() {
@@ -474,7 +418,20 @@ const Home = ({ navigation }) => {
     return (
       <View style={{ padding: SIZES.padding * 2 }}>
         <Text style={{ ...FONTS.h1 }}>Estabelecimentos</Text>
-        <Text style={{ ...FONTS.h1 }}>Próximos</Text>
+        <View
+          style={{
+            flexDirection: "row",
+          }}
+        >
+          <Text style={{ ...FONTS.h1, paddingRight: 15 }}>Seguros</Text>
+          <Image
+            source={icons.health_icon}
+            style={{
+              height: 40,
+              width: 40,
+            }}
+          />
+        </View>
 
         <FlatList
           data={categories}
@@ -583,7 +540,7 @@ const Home = ({ navigation }) => {
                   ...FONTS.body3,
                   color:
                     priceRating <= item.priceRating
-                      ? COLORS.black
+                      ? COLORS.green
                       : COLORS.darkgray,
                 }}
               >
@@ -602,7 +559,7 @@ const Home = ({ navigation }) => {
         renderItem={renderItem}
         contentContainerStyle={{
           paddingHorizontal: SIZES.padding * 2,
-          paddingBottom: 30,
+          paddingBottom: 65,
         }}
       />
     );

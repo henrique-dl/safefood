@@ -156,11 +156,12 @@ const Restaurant = ({ route, navigation }) => {
             <View style={{ marginTop: 30 }}>
               {favorite ? (
                 <Text style={{ ...FONTS.body3 }}>
-                  Resturante adicionado a lista de favoritos
+                  Estabelecimento adicionado à lista de favoritos
                 </Text>
               ) : (
                 <Text style={{ ...FONTS.body3 }}>
-                  Aperte o ícone de coração {"\n"}para favoritar o restaurante
+                  Aperte o ícone de coração para {"\n"} favoritar o
+                  estabelecimento
                 </Text>
               )}
             </View>
@@ -281,7 +282,7 @@ const Restaurant = ({ route, navigation }) => {
             borderRadius: SIZES.radius,
           }}
           onPress={() =>
-            navigation.navigate("OrderDelivery", {
+            navigation.navigate("Map", {
               restaurant: restaurant,
               currentLocation: currentLocation,
             })
