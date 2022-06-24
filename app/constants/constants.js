@@ -31,7 +31,7 @@ const screens = {
   search: "Search",
   cart: "Cart",
   favourite: "Favoritos",
-  notification: "Notificações",
+  favouriteList: "Lista de favoritos",
   help: "Ajuda",
 };
 
@@ -54,22 +54,7 @@ const bottom_tabs = [
   },
   {
     id: 4,
-    label: screens.notification,
-  },
-];
-
-const delivery_time = [
-  {
-    id: 1,
-    label: "10 Mins",
-  },
-  {
-    id: 2,
-    label: "20 Mins",
-  },
-  {
-    id: 3,
-    label: "30 Mins",
+    label: screens.favouriteList,
   },
 ];
 
@@ -96,49 +81,12 @@ const ratings = [
   },
 ];
 
-const tags = [
-  {
-    id: 1,
-    label: "Burger",
-  },
-  {
-    id: 2,
-    label: "Fast Food",
-  },
-  {
-    id: 3,
-    label: "Pizza",
-  },
-  {
-    id: 4,
-    label: "Asian",
-  },
-  {
-    id: 5,
-    label: "Dessert",
-  },
-  {
-    id: 6,
-    label: "Breakfast",
-  },
-  {
-    id: 7,
-    label: "Vegetable",
-  },
-  {
-    id: 8,
-    label: "Taccos",
-  },
-];
-
 const GOOGLE_MAP_API_KEY = "AIzaSyAA9ysb0SKpLQm4yEu-RhuPyVXzbavZFek";
 
 export default {
   onboarding_screens,
   screens,
   bottom_tabs,
-  delivery_time,
   ratings,
-  tags,
   GOOGLE_MAP_API_KEY,
 };

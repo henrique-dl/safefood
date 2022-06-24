@@ -4,7 +4,6 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
-import { MainLayout, Home } from "../screens";
 import Tabs from "./Tabs";
 import {
   COLORS,
@@ -16,7 +15,6 @@ import {
   images,
 } from "../constants";
 import { googleData } from "../components/TextGoogleButton";
-import { api } from "../libs/api";
 import { useAuth } from "../contexts/auth";
 
 const Drawer = createDrawerNavigator();
@@ -67,7 +65,6 @@ const CustomDrawerItem = ({ label, icon }) => {
 
 const CustomDrawerContent = ({ navigation }) => {
   const { user, signOut } = useAuth();
-  console.log(user);
   function handleSignOut() {
     signOut();
   }
@@ -184,18 +181,69 @@ const CustomDrawerContent = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
 
-          <CustomDrawerItem label="Configurações" icon={icons2.setting} />
+          <CustomDrawerItem label="Cupons" icon={icons2.coupon} />
 
-          <CustomDrawerItem
-            label={constants.screens.notification}
-            icon={icons2.notification}
-          />
+          <TouchableOpacity
+            style={{
+              marginBottom: 10,
+              flexDirection: "row",
+              height: 40,
+              marginBottom: SIZES.base,
+              alignItems: "center",
+              paddingLeft: SIZES.base,
+              borderRadius: SIZES.base,
+            }}
+            onPress={() => navigation.navigate("Restaurant")}
+          >
+            <Image
+              source={icons2.favourite}
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: COLORS.black,
+              }}
+            />
+            <Text
+              style={{
+                color: COLORS.black,
+                ...FONTS.h3,
+                marginLeft: SIZES.padding,
+              }}
+            >
+              Favoritar
+            </Text>
+          </TouchableOpacity>
 
-          <CustomDrawerItem
-            label={constants.screens.favourite}
-            icon={icons2.favourite}
-            navigation={navigation}
-          />
+          <TouchableOpacity
+            style={{
+              marginBottom: 10,
+              flexDirection: "row",
+              height: 40,
+              marginBottom: SIZES.base,
+              alignItems: "center",
+              paddingLeft: SIZES.base,
+              borderRadius: SIZES.base,
+            }}
+            onPress={() => navigation.navigate("FavoriteList")}
+          >
+            <Image
+              source={icons.list}
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: COLORS.black,
+              }}
+            />
+            <Text
+              style={{
+                color: COLORS.black,
+                ...FONTS.h3,
+                marginLeft: SIZES.padding,
+              }}
+            >
+              Lista de favoritos
+            </Text>
+          </TouchableOpacity>
 
           {/* Line Divider */}
           <View
@@ -240,7 +288,7 @@ const CustomDrawerContent = ({ navigation }) => {
 
           <CustomDrawerItem label={constants.screens.help} icon={icons2.help} />
 
-          <CustomDrawerItem label="Convidar amigos" icon={icons2.profile} />
+          <CustomDrawerItem label="Descontos" icon={icons2.qrcode} />
         </View>
 
         <TouchableOpacity

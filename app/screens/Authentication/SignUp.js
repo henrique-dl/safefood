@@ -113,8 +113,6 @@ const SignUp = ({ navigation }) => {
     >
       <ScrollView
         style={{
-          // borderWidth: 1,
-          // borderColor: 'red',
           marginBottom: -100,
         }}
       >
@@ -259,7 +257,7 @@ const SignUp = ({ navigation }) => {
             />
           ) : null}
 
-          {signUpType == "PJ" ? (
+          {signUpType == "PJ" && (
             <FormInput
               label="CNPJ"
               containerStyle={{
@@ -292,9 +290,9 @@ const SignUp = ({ navigation }) => {
                 </View>
               }
             />
-          ) : null}
+          )}
 
-          {signUpType == "PJ" ? (
+          {signUpType == "PJ" && (
             <FormInput
               label="Número de telefone"
               containerStyle={{
@@ -329,7 +327,7 @@ const SignUp = ({ navigation }) => {
                 </View>
               }
             />
-          ) : null}
+          )}
 
           <FormInput
             label="Senha"

@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, ActivityIndicator } from "react-native";
 import * as auth from "../services/auth";
+import { COLORS } from "../constants";
 import api from "../libs/api";
 
 const AuthContext = createContext(null);
@@ -11,9 +12,16 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
+    if (!user) {
+      setLoading(false);
+    }
+
     async function loadStoragedData() {
       const storageUser = await AsyncStorage.getItem("@SafeFoodAuth:user");
       const storageToken = await AsyncStorage.getItem("@SafeFoodAuth:token");
+
+      // console.log(storageUser);
+      // console.log(storageToken);
 
       if (storageUser && storageToken) {
         api.defaults.headers["Authorization"] = `Bearer ${storageToken.token}`;
@@ -45,11 +53,13 @@ export const AuthProvider = ({ children }) => {
     });
   }
 
+  // console.log(loading);
   if (loading) {
-    setLoading(!loading);
+    // setLoading(!loading);
+    // aqui
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#999" />
+        <ActivityIndicator size="large" color={COLORS.primary} />
       </View>
     );
   }

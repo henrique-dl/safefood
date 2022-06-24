@@ -1,256 +1,272 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 
-import { AuthLayout } from '../';
-import { FONTS, SIZES, COLORS, icons, icons2, images } from '../../constants';
+import { AuthLayout } from "../";
+import { FONTS, SIZES, COLORS, icons2 } from "../../constants";
 
-import { FormInput, CustomSwitch, TextButton, TextGoogleButton } from '../../components';
-import { utils } from '../../utils'; 
-import { api } from '../../libs/api';
-import { useAuth } from '../../contexts/auth';
+import api from "../../libs/api";
+
+import {
+  FormInput,
+  CustomSwitch,
+  TextButton,
+  TextGoogleButton,
+} from "../../components";
+import { utils } from "../../utils";
+import { useAuth } from "../../contexts/auth";
 
 export let userData = {};
 
 const SignIn = ({ navigation }) => {
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
-    const [emailError, setEmailError] = React.useState('')
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [emailError, setEmailError] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState("");
 
-    const [showPass, setShowPass] = React.useState(false)
-    const [saveMe, setSaveMe] = React.useState(false)
-    const [logInError, setLogInError] = React.useState('');
+  const [showPass, setShowPass] = React.useState(false);
+  const [saveMe, setSaveMe] = React.useState(false);
+  const [logInError, setLogInError] = React.useState("");
 
-    function isEnableSignIn() {
-        return email != '' && password != '' && emailError == ''
-    }
-
-    const { signed, user, signIn} = useAuth();
-
-    console.log(signed);
-    console.log(user);
-
-    function handleSignIn() {
-        signIn();
-    }
-
-    // async function logIn() {
-    //     if (isEnableSignIn()) {
-    //         await api.get(`/usuarios/${email}`)
-    //         .then(function (response) {
-    //             if (response.status == 200 
-    //                 && (!response.data.error || response.data.error === 0)) {
-    //                     userData = response.data;
-    //                     // console.log(response.data);
-    //                     navigation.navigate('MainScreen');
-    //             } 
-
-    //             if (response.data.error) {
-    //                 userData = response.data;
-    //                 setLogInError(response.data.error);
-    //             }
-    //         })
-    //         .catch(function (error) {
-    //             setLogInError(`Erro: ${error.message}`)
-    //         });
-    //     }
-
-    //     if (userData.error) {
-    //         await api.get(`/estabelecimentos/${email}`)
-    //         .then(function (response) {
-    //             if (response.status == 200 
-    //                 && (!response.data.error || response.data.error === 0)) {
-    //                     userData = response.data;
-    //                     navigation.navigate('MainScreen');
-    //             } 
-
-    //             if (response.data.error) {
-    //                 userData = response.data;
-    //                 setLogInError(response.data.error);
-    //             }
-    //         })
-    //         .catch(function (error) {
-    //             setLogInError(`Erro: ${error.message}`)
-    //         });
-    //     }
-        
-    //     console.log(userData);
-    // }
-
+  function isEnableSignIn() {
     return (
-        <AuthLayout
-            title="Faça seu login"
-            subtitle="Bem vindo de volta, sentimos sua falta"
-        >
+      email != "" && password != "" && emailError == "" && passwordError == ""
+    );
+  }
+
+  const { signed, user, signIn } = useAuth();
+
+  function handleSignIn() {
+    logIn();
+  }
+
+  async function logIn() {
+    if (isEnableSignIn()) {
+      await api
+        .get(`/usuarios/${email}`)
+        .then(function (response) {
+          if (
+            response.status == 200 &&
+            (!response.data.error || response.data.error === 0)
+          ) {
+            userData = response.data;
+            navigation.navigate("MainScreen");
+          }
+
+          if (response.data.error) {
+            userData = response.data;
+            setLogInError(response.data.error);
+          }
+        })
+        .catch(function (error) {
+          setLogInError(`Erro: ${error.message}`);
+        });
+    }
+
+    if (userData.error) {
+      await api
+        .get(`/estabelecimentos/${email}`)
+        .then(function (response) {
+          if (
+            response.status == 200 &&
+            (!response.data.error || response.data.error === 0)
+          ) {
+            userData = response.data;
+            navigation.navigate("MainScreen");
+          }
+
+          if (response.data.error) {
+            userData = response.data;
+            setLogInError(response.data.error);
+          }
+        })
+        .catch(function (error) {
+          setLogInError(`Erro: ${error.message}`);
+        });
+    }
+  }
+
+  return (
+    <AuthLayout
+      title="Faça seu login"
+      subtitle="Bem vindo de volta, sentimos sua falta"
+    >
+      <View
+        style={{
+          flex: 1,
+          marginTop: SIZES.padding * 2,
+          paddingHorizontal: SIZES.padding * 2,
+        }}
+      >
+        {/* Form Inputs */}
+        <FormInput
+          label="Email"
+          keyboardType="email-address"
+          autoCompleteType="email"
+          onChange={(value) => {
+            utils.validateEmail(value, setEmailError);
+            setEmail(value);
+          }}
+          errorMsg={emailError}
+          appendComponent={
             <View
-                style={{
-                    flex: 1,
-                    marginTop: SIZES.padding * 2,
-                    paddingHorizontal: SIZES.padding * 2
-                }}
+              style={{
+                justifyContent: "center",
+              }}
             >
-                {/* Form Inputs */}
-                <FormInput
-                    label='Email'
-                    keyboardType='email-address'
-                    autoCompleteType='email'
-                    onChange={(value) => {
-                        utils.validateEmail(value, setEmailError)
-                        setEmail(value)
-                    }}
-                    errorMsg={emailError}
-                    appendComponent={
-                        <View
-                            style={{
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <Image
-                                source={email == '' || (email != '' && emailError == '') ?
-                                icons2.correct : icons2.cross}
-                                style={{
-                                    height: 20,
-                                    width: 20,
-                                    tintColor: email == '' ? COLORS.gray 
-                                    : (email != '' && emailError == '') ? COLORS.green 
-                                    : COLORS.red
-                                }}
-                            />
-                        </View>
-                    }
-                />
+              <Image
+                source={
+                  email == "" || (email != "" && emailError == "")
+                    ? icons2.correct
+                    : icons2.cross
+                }
+                style={{
+                  height: 20,
+                  width: 20,
+                  tintColor:
+                    email == ""
+                      ? COLORS.gray
+                      : email != "" && emailError == ""
+                      ? COLORS.green
+                      : COLORS.red,
+                }}
+              />
+            </View>
+          }
+        />
 
-                <FormInput
-                    label='Senha'
-                    secureTextEntry={!showPass}
-                    autoCompleteType='password'
-                    containerStyle={{
-                        marginTop: SIZES.radius
-                    }}
-                    onChange={(value) => setPassword(value)}
-                    appendComponent={
-                        <TouchableOpacity
-                            style={{
-                                width: 40,
-                                alignItems: 'flex-end',
-                                justifyContent: 'center'
-                            }}
-                            onPress={() => setShowPass(!showPass)}
-                        >
-                            <Image 
-                                source={showPass ? icons2.eye_close : icons2.eye}
-                                style={{
-                                    height: 20,
-                                    width: 20,
-                                    tintColor: COLORS.gray
-                                }}
-                            />
-                        </TouchableOpacity>
-                    }
-                />
+        <FormInput
+          label="Senha"
+          secureTextEntry={!showPass}
+          autoCompleteType="password"
+          containerStyle={{
+            marginTop: SIZES.radius,
+          }}
+          onChange={(value) => {
+            utils.validatePassword(value, setPasswordError);
+            setPassword(value);
+          }}
+          errorMsg={passwordError}
+          appendComponent={
+            <TouchableOpacity
+              style={{
+                width: 40,
+                alignItems: "flex-end",
+                justifyContent: "center",
+              }}
+              onPress={() => setShowPass(!showPass)}
+            >
+              <Image
+                source={showPass ? icons2.eye_close : icons2.eye}
+                style={{
+                  height: 20,
+                  width: 20,
+                  tintColor: COLORS.gray,
+                }}
+              />
+            </TouchableOpacity>
+          }
+        />
 
-                {/* Save me & Forgot Password */}
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        marginTop: SIZES.radius,
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    <CustomSwitch
-                        value={saveMe}
-                        onChange={(value) => setSaveMe(value)}
-                    />
+        {/* Save me & Forgot Password */}
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.radius,
+            justifyContent: "space-between",
+          }}
+        >
+          <CustomSwitch value={saveMe} onChange={(value) => setSaveMe(value)} />
 
-                    <TextButton
-                        label='Redefinir senha'
-                        buttonContainerStyle={{
-                            backgroundColor: null
-                        }}
-                        labelStyle={{
-                            color: COLORS.gray,
-                            ...FONTS.body4
-                        }}
-                        onPress={() => navigation.navigate('ForgotPassword')}
-                    />
-                </View>
+          <TextButton
+            label="Redefinir senha"
+            buttonContainerStyle={{
+              backgroundColor: null,
+            }}
+            labelStyle={{
+              color: COLORS.gray,
+              ...FONTS.body4,
+            }}
+          />
+        </View>
 
-                <Text
-                    style={{
-                        textAlign: 'center',
-                        marginTop: SIZES.padding,
-                        color: COLORS.red
-                    }}
-                >
-                    {logInError}
-                </Text>
+        <Text
+          style={{
+            textAlign: "center",
+            marginTop: SIZES.padding,
+            color: COLORS.red,
+          }}
+        >
+          {logInError}
+        </Text>
 
-                {/* Sign In */}
-                <TextButton 
-                    label='Entrar'
-                    disabled={isEnableSignIn() ? false : true}
-                    buttonContainerStyle={{
-                        height: 55,
-                        alignItems: 'center',
-                        marginTop: 15,
-                        borderRadius: SIZES.radius,
-                        backgroundColor: isEnableSignIn() ? COLORS.primary
-                        : COLORS.transparentPrimary
-                    }}
-                    onPress={() => handleSignIn()}
-                />
+        {/* Sign In */}
+        <TextButton
+          label="Entrar"
+          disabled={isEnableSignIn() ? false : true}
+          buttonContainerStyle={{
+            height: 55,
+            alignItems: "center",
+            marginTop: 15,
+            borderRadius: SIZES.radius,
+            backgroundColor: isEnableSignIn()
+              ? COLORS.primary
+              : COLORS.transparentPrimary,
+          }}
+          onPress={() => handleSignIn()}
+        />
 
-                {/* Google Auth */}
-                <TextGoogleButton
-                    containerStyle={{
-                        height: 50,
-                        alignItems: 'center',
-                        marginTop: 20,
-                        borderRadius: SIZES.radius,
-                        backgroundColor: '#fff',
-                        borderWidth: 1,
-                        borderColor: COLORS.darkGray
-                    }}  
-                    label='Continue com Google'
-                    labelStyle={{
-                        marginLeft: SIZES.radius,
-                        color: COLORS.black
-                    }}
-                />
+        {/* Google Auth */}
+        <TextGoogleButton
+          containerStyle={{
+            height: 50,
+            alignItems: "center",
+            marginTop: 20,
+            borderRadius: SIZES.radius,
+            backgroundColor: "#fff",
+            borderWidth: 1,
+            borderColor: COLORS.darkGray,
+          }}
+          label="Continue com Google"
+          labelStyle={{
+            marginLeft: SIZES.radius,
+            color: COLORS.black,
+          }}
+        />
 
-                {/* Sign Up */}
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        marginTop: SIZES.radius,
-                        justifyContent: 'center'
-                    }}
-                >
-                    <Text 
-                        style={{
-                            color: COLORS.darkgray,
-                            ...FONTS.body3
-                        }}
-                    >
-                        Ainda não tem cadastro?
-                    </Text>
+        {/* Sign Up */}
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.radius,
+            justifyContent: "center",
+          }}
+        >
+          <Text
+            style={{
+              color: COLORS.darkgray,
+              ...FONTS.body3,
+            }}
+          >
+            Ainda não tem cadastro?
+          </Text>
 
-                    <TextButton
-                        label='Cadastre-se'
-                        buttonContainerStyle={{
-                            marginLeft: 3,
-                            backgroundColor: null
-                        }}
-                        labelStyle={{
-                            color: COLORS.primary,
-                            ...FONTS.h3,
-                            fontSize: 18
-                        }}
-                        onPress={() => navigation.navigate('SignUp')}
-                    />
-                </View>
-            </View>    
-        </AuthLayout>
-    )
-}
+          <TextButton
+            label="Cadastre-se"
+            buttonContainerStyle={{
+              marginLeft: 3,
+              backgroundColor: null,
+            }}
+            labelStyle={{
+              color: COLORS.primary,
+              ...FONTS.h3,
+              fontSize: 18,
+            }}
+            onPress={() => navigation.navigate("SignUp")}
+          />
+        </View>
+      </View>
+    </AuthLayout>
+  );
+};
 
 export default SignIn;

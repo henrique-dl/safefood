@@ -1,33 +1,13 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  Platform,
-  PermissionsAndroid,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { Header } from "../../components";
-import LinearGradient from "react-native-linear-gradient";
 import * as Location from "expo-location";
 
 // ICON BUTTON
-import {
-  COLORS,
-  FONTS,
-  icons,
-  images,
-  icons2,
-  SIZES,
-  dummyData,
-  constants,
-} from "../../constants";
+import { COLORS, FONTS, icons2, SIZES, constants } from "../../constants";
 import { utils } from "../../utils";
-import { block, set } from "react-native-reanimated";
 
 const Map = ({ route, navigation }) => {
   const mapView = React.useRef();
@@ -81,15 +61,6 @@ const Map = ({ route, navigation }) => {
       text = JSON.stringify(location);
     }
   }, [route.params]);
-
-  // let destination = {
-  //   latitude: -15.840064042324233,
-  //   longitude: -48.022379055273724,
-  // };
-
-  // setToLoc(destination);
-  // // setFromLoc(dummyData.fromLocs[1])
-  // setRegion(initialRegion);
 
   function renderMap() {
     return (

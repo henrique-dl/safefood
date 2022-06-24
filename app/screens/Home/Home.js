@@ -12,10 +12,6 @@ import {
 import { icons, images, SIZES, COLORS, FONTS } from "../../constants";
 import { Header } from "../../components";
 
-import { Tabs } from "../../navigations/Tabs";
-
-const navigation = {};
-
 const Home = ({ navigation }) => {
   navigation = navigation;
   const initialCurrentLocation = {
@@ -93,10 +89,6 @@ const Home = ({ navigation }) => {
         latitude: -15.73110853594763,
         longitude: -47.894868264974825,
       },
-      courier: {
-        avatar: images.avatar_1,
-        name: "Amy",
-      },
       menu: [
         {
           menuId: 1,
@@ -136,10 +128,6 @@ const Home = ({ navigation }) => {
       location: {
         latitude: -15.774958615837175,
         longitude: -47.88816826257737,
-      },
-      courier: {
-        avatar: images.avatar_2,
-        name: "Jackson",
       },
       menu: [
         {
@@ -190,10 +178,6 @@ const Home = ({ navigation }) => {
         latitude: -15.832968989923765,
         longitude: -48.034748944484754,
       },
-      courier: {
-        avatar: images.avatar_3,
-        name: "James",
-      },
       menu: [
         {
           menuId: 8,
@@ -217,10 +201,6 @@ const Home = ({ navigation }) => {
         latitude: -15.813196994242716,
         longitude: -47.89394244415947,
       },
-      courier: {
-        avatar: images.avatar_4,
-        name: "Ahmad",
-      },
       menu: [
         {
           menuId: 9,
@@ -243,10 +223,6 @@ const Home = ({ navigation }) => {
       location: {
         latitude: -15.794281438234423,
         longitude: -47.921111759243324,
-      },
-      courier: {
-        avatar: images.avatar_4,
-        name: "Muthu",
       },
       menu: [
         {
@@ -297,10 +273,6 @@ const Home = ({ navigation }) => {
         latitude: -16.013611558711755,
         longitude: -48.06846553902774,
       },
-      courier: {
-        avatar: images.avatar_1,
-        name: "Jessie",
-      },
       menu: [
         {
           menuId: 12,
@@ -313,7 +285,7 @@ const Home = ({ navigation }) => {
         {
           menuId: 13,
           name: "Sanduíche natural",
-          photo: images.ice_kacang,
+          photo: images.amaranto_sanduiche,
           description:
             "Sanduíche 100% vegano com queijo, maionese alface e tomate",
           calories: 187,

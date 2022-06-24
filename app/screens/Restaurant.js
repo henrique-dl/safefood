@@ -9,8 +9,11 @@ import {
   Animated,
 } from "react-native";
 import { Extrapolate } from "react-native-reanimated";
+import { TextButton } from "../components";
 
 import { icons, COLORS, SIZES, FONTS } from "../constants";
+
+const establishment = require("../assets/onboardImages/onboardScreen1.png");
 
 const Restaurant = ({ route, navigation }) => {
   const scrollX = new Animated.Value(0);
@@ -19,15 +22,18 @@ const Restaurant = ({ route, navigation }) => {
 
   const [favorite, setFavorite] = React.useState(false);
 
+  // console.log(route);
   React.useEffect(() => {
-    let { item, currentLocation } = route.params;
+    if (route.params != null) {
+      let { item, currentLocation } = route.params;
 
-    setRestaurant(item);
-    setCurrentLocation(currentLocation);
-  });
+      setRestaurant(item);
+      setCurrentLocation(currentLocation);
+    }
+  }, [route.params]);
 
   function toggleFavorite() {
-    console.log(favorite);
+    // console.log(favorite);
     setFavorite(!favorite);
   }
 
@@ -79,6 +85,7 @@ const Restaurant = ({ route, navigation }) => {
             paddingRight: SIZES.padding * 2,
             justifyContent: "center",
           }}
+          onPress={() => navigation.navigate("FavoriteList")}
         >
           <Image
             source={icons.list}
@@ -296,12 +303,87 @@ const Restaurant = ({ route, navigation }) => {
     );
   }
 
+  function renderNullRestaurant() {
+    return (
+      <View>
+        <View
+          style={{
+            padding: 25,
+          }}
+        >
+          <Text style={{ textAlign: "center", ...FONTS.h1, fontSize: 25 }}>
+            Favoritar Estabelecimentos
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Image
+            source={establishment}
+            style={{
+              width: SIZES.width * 1,
+              height: SIZES.width * 0.8,
+              marginBottom: -SIZES.padding,
+            }}
+          />
+        </View>
+
+        <View
+          style={{
+            padding: 50,
+          }}
+        >
+          <Text style={{ textAlign: "center", fontSize: 25 }}>♥</Text>
+          <Text
+            style={{
+              textAlign: "center",
+              marginTop: SIZES.radius,
+              textAlign: "center",
+              color: COLORS.darkGray,
+              ...FONTS.body3,
+            }}
+          >
+            Parece que você ainda não selecionou um estabelecimento para
+            favoritá-lo.
+          </Text>
+        </View>
+
+        <View
+          style={{
+            paddingHorizontal: SIZES.width * 0.18,
+            marginBottom: 60,
+          }}
+        >
+          <TextButton
+            label="Estabelecimentos"
+            buttonContainerStyle={{
+              height: 60,
+              width: 250,
+              borderRadius: SIZES.radius,
+            }}
+            onPress={() => navigation.navigate("Home")}
+          />
+        </View>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       {renderHeader()}
-      {renderFoodInfo()}
-      {renderDots()}
-      {renderNavigationButton()}
+      {restaurant != null ? (
+        <>
+          {renderFoodInfo()}
+          {renderDots()}
+          {renderNavigationButton()}
+        </>
+      ) : (
+        <>{renderNullRestaurant()}</>
+      )}
     </SafeAreaView>
   );
 };

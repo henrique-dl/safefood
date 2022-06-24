@@ -1,13 +1,13 @@
-import React from 'react';
-import { useAuth } from '../contexts/auth';
+import React from "react";
+import { useAuth } from "../contexts/auth";
 
-import AppRoutes from './AppRoutes';
-import AuthRoutes from './AuthRoutes';
+import AppRoutes from "./AppRoutes";
+import AuthRoutes from "./AuthRoutes";
 
 const Routes = () => {
   const { signed, loading } = useAuth();
 
-  return signed ? <AppRoutes /> : <AuthRoutes />
-}
+  return signed ? <AppRoutes /> : <AuthRoutes />;
+};
 
 export default Routes;

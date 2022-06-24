@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
-import { FONTS, COLORS, SIZES, icons, icons2 } from "../constants";
+import { FONTS, COLORS, SIZES, icons } from "../constants";
 
 const Header = ({ navigation }) => {
   return (

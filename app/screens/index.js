@@ -6,6 +6,7 @@ import SignUp from "./Authentication/SignUp";
 import OnBoarding from "./OnBoarding/OnBoarding";
 import Map from "./Map/Map";
 import Restaurant from "./Restaurant";
+import FavouriteList from "./FavouriteList";
 
 export {
   MainLayout,
@@ -16,4 +17,5 @@ export {
   OnBoarding,
   Map,
   Restaurant,
+  FavouriteList,
 };
