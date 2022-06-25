@@ -14,12 +14,9 @@ import {
   icons,
   images,
 } from "../constants";
-import { googleData } from "../components/TextGoogleButton";
 import { useAuth } from "../contexts/auth";
 
 const Drawer = createDrawerNavigator();
-
-let userData = {};
 
 var data = new Date();
 var dataAtual =
@@ -115,11 +112,7 @@ const CustomDrawerContent = ({ navigation }) => {
           onPress={() => console.log("Profile")}
         >
           <Image
-            source={
-              googleData.picture
-                ? { uri: googleData.picture }
-                : images.human_profile
-            }
+            source={user.picture ? { uri: user.picture } : icons.user}
             style={{
               width: 50,
               height: 50,
@@ -133,10 +126,10 @@ const CustomDrawerContent = ({ navigation }) => {
             }}
           >
             <Text style={{ color: COLORS.black, ...FONTS.h3 }}>
-              {googleData.given_name ? googleData.given_name : user.name}
+              {user.given_name ? user.given_name : user?.name}
             </Text>
             <Text style={{ color: COLORS.black, ...FONTS.body4 }}>
-              {googleData.family_name ? googleData.family_name : dataAtual}
+              {user.family_name ? user.family_name : dataAtual}
             </Text>
           </View>
         </TouchableOpacity>

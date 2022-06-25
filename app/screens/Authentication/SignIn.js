@@ -25,7 +25,6 @@ const SignIn = ({ navigation }) => {
 
   const [showPass, setShowPass] = React.useState(false);
   const [saveMe, setSaveMe] = React.useState(false);
-  const [logInError, setLogInError] = React.useState("");
 
   function isEnableSignIn() {
     return (
@@ -33,56 +32,10 @@ const SignIn = ({ navigation }) => {
     );
   }
 
-  const { signed, user, signIn } = useAuth();
+  const { signed, user, userError, signIn } = useAuth();
 
   function handleSignIn() {
-    logIn();
-  }
-
-  async function logIn() {
-    if (isEnableSignIn()) {
-      await api
-        .get(`/usuarios/${email}`)
-        .then(function (response) {
-          if (
-            response.status == 200 &&
-            (!response.data.error || response.data.error === 0)
-          ) {
-            userData = response.data;
-            navigation.navigate("MainScreen");
-          }
-
-          if (response.data.error) {
-            userData = response.data;
-            setLogInError(response.data.error);
-          }
-        })
-        .catch(function (error) {
-          setLogInError(`Erro: ${error.message}`);
-        });
-    }
-
-    if (userData.error) {
-      await api
-        .get(`/estabelecimentos/${email}`)
-        .then(function (response) {
-          if (
-            response.status == 200 &&
-            (!response.data.error || response.data.error === 0)
-          ) {
-            userData = response.data;
-            navigation.navigate("MainScreen");
-          }
-
-          if (response.data.error) {
-            userData = response.data;
-            setLogInError(response.data.error);
-          }
-        })
-        .catch(function (error) {
-          setLogInError(`Erro: ${error.message}`);
-        });
-    }
+    signIn(email);
   }
 
   return (
@@ -196,7 +149,7 @@ const SignIn = ({ navigation }) => {
             color: COLORS.red,
           }}
         >
-          {logInError}
+          {userError}
         </Text>
 
         {/* Sign In */}

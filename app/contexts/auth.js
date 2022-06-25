@@ -4,11 +4,13 @@ import { View, ActivityIndicator } from "react-native";
 import * as auth from "../services/auth";
 import { COLORS } from "../constants";
 import api from "../libs/api";
+import * as AuthSession from "expo-auth-session";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = React.useState(null);
+  const [userError, setUserError] = React.useState("");
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -20,9 +22,6 @@ export const AuthProvider = ({ children }) => {
       const storageUser = await AsyncStorage.getItem("@SafeFoodAuth:user");
       const storageToken = await AsyncStorage.getItem("@SafeFoodAuth:token");
 
-      // console.log(storageUser);
-      // console.log(storageToken);
-
       if (storageUser && storageToken) {
         api.defaults.headers["Authorization"] = `Bearer ${storageToken.token}`;
         setUser(JSON.parse(storageUser));
@@ -33,10 +32,17 @@ export const AuthProvider = ({ children }) => {
     loadStoragedData();
   }, []);
 
-  async function signIn() {
-    const response = await auth.signIn();
+  async function signIn(email) {
+    const response = await auth.signIn(email);
 
-    setUser(response.user);
+    if (!response.user || response.error) {
+      console.log("oi");
+      console.log(response.error);
+      setUserError(response.error);
+    } else {
+      setUser(response.user);
+      setUserError("");
+    }
 
     api.defaults.headers["Authorization"] = `Bearer ${response.token}`;
 
@@ -47,16 +53,36 @@ export const AuthProvider = ({ children }) => {
     await AsyncStorage.setItem("@SafeFoodAuth:token", response.token);
   }
 
+  async function googleSignIn() {
+    try {
+      const CLIENT_ID =
+        "556033828524-0p5bugvus75j9jh71r384suq5qhkct1b.apps.googleusercontent.com";
+      const REDIRECT_URI = "https://auth.expo.io/@viyuka/SafeFood";
+      const RESPONSE_TYPE = "token";
+      const SCOPE = encodeURI("profile email");
+
+      const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`;
+
+      const { type, params } = await AuthSession.startAsync({ authUrl });
+
+      if (type == "success") {
+        const response = await fetch(
+          `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`
+        );
+        setUser(await response.json());
+      }
+    } catch (error) {
+      return error;
+    }
+  }
+
   async function signOut() {
     AsyncStorage.clear().then(() => {
       setUser(null);
     });
   }
 
-  // console.log(loading);
   if (loading) {
-    // setLoading(!loading);
-    // aqui
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" color={COLORS.primary} />
@@ -65,7 +91,9 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ signed: !!user, user, signIn, signOut, userError, googleSignIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
