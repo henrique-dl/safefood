@@ -32,25 +32,6 @@ export const AuthProvider = ({ children }) => {
     loadStoragedData();
   }, []);
 
-  async function signIn(email) {
-    const response = await auth.signIn(email);
-
-    if (!response.user || response.error) {
-      setUserError(response.error);
-    } else {
-      setUser(response.user);
-      setUserError("");
-    }
-
-    api.defaults.headers["Authorization"] = `Bearer ${response.token}`;
-
-    await AsyncStorage.setItem(
-      "@SafeFoodAuth:user",
-      JSON.stringify(response.user)
-    );
-    await AsyncStorage.setItem("@SafeFoodAuth:token", response.token);
-  }
-
   async function googleSignIn() {
     try {
       const CLIENT_ID =
@@ -90,7 +71,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, signIn, signOut, userError, googleSignIn }}
+      value={{ signed: !!user, user, signOut, userError, googleSignIn }}
     >
       {children}
     </AuthContext.Provider>

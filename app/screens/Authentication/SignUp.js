@@ -6,7 +6,7 @@ import { AuthLayout } from "../";
 import { FONTS, SIZES, COLORS, icons2 } from "../../constants";
 import { FormInput, TextButton, TextGoogleButton } from "../../components";
 import { utils } from "../../utils";
-import { api } from "../../libs/api";
+import { useAuth } from "../../contexts/auth";
 
 const SignUp = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
@@ -23,6 +23,8 @@ const SignUp = ({ navigation }) => {
   const [cnpj, setCnpj] = React.useState("");
   const [telephone, setTelephone] = React.useState("");
   const [registerError, setRegisterError] = React.useState("");
+
+  const { userError, signIn, googleSignIn } = useAuth();
 
   function isEnableSignUp() {
     if (signUpType == "PF") {
@@ -46,59 +48,6 @@ const SignUp = ({ navigation }) => {
         cnpj != "" &&
         telephone != ""
       );
-    }
-  }
-
-  async function register() {
-    if (isEnableSignUp()) {
-      if (signUpType == "PF") {
-        await api
-          .post("/usuarios", {
-            st_nome: username,
-            st_email: email,
-            st_senha: password,
-          })
-          .then(function (response) {
-            if (
-              response.status == 200 &&
-              (!response.data.error || response.data.error === 0)
-            ) {
-              navigation.navigate("MainScreen");
-            }
-
-            if (response.data.error) {
-              setRegisterError(response.data.error);
-            }
-          })
-          .catch(function (error) {
-            setRegisterError(`Erro: ${error.message}`);
-          });
-      } else {
-        await api
-          .post("/estabelecimentos", {
-            st_nome: username,
-            st_email: email,
-            st_senha: password,
-            st_endereco: address,
-            cnpj: cnpj,
-            telefone: telephone,
-          })
-          .then(function (response) {
-            if (
-              response.status == 200 &&
-              (!response.data.error || response.data.error === 0)
-            ) {
-              navigation.navigate("MainScreen");
-            }
-
-            if (response.data.error) {
-              setRegisterError(response.data.error);
-            }
-          })
-          .catch(function (error) {
-            setRegisterError(`Erro: ${error.message}`);
-          });
-      }
     }
   }
 
@@ -385,7 +334,7 @@ const SignUp = ({ navigation }) => {
                 ? COLORS.primary
                 : COLORS.transparentPrimary,
             }}
-            onPress={() => register()}
+            onPress={() => googleSignIn()}
           />
 
           {/* Google Auth */}

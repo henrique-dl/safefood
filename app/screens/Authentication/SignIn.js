@@ -4,8 +4,6 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { AuthLayout } from "../";
 import { FONTS, SIZES, COLORS, icons2 } from "../../constants";
 
-import api from "../../libs/api";
-
 import {
   FormInput,
   CustomSwitch,
@@ -14,8 +12,6 @@ import {
 } from "../../components";
 import { utils } from "../../utils";
 import { useAuth } from "../../contexts/auth";
-
-export let userData = {};
 
 const SignIn = ({ navigation }) => {
   const [email, setEmail] = React.useState("");
@@ -32,11 +28,7 @@ const SignIn = ({ navigation }) => {
     );
   }
 
-  const { signed, user, userError, signIn } = useAuth();
-
-  function handleSignIn() {
-    signIn(email);
-  }
+  const { userError, googleSignIn } = useAuth();
 
   return (
     <AuthLayout
@@ -165,7 +157,7 @@ const SignIn = ({ navigation }) => {
               ? COLORS.primary
               : COLORS.transparentPrimary,
           }}
-          onPress={() => handleSignIn()}
+          onPress={() => googleSignIn()}
         />
 
         {/* Google Auth */}
