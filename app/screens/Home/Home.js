@@ -11,6 +11,9 @@ import {
 
 import { icons, images, SIZES, COLORS, FONTS } from "../../constants";
 import { Header } from "../../components";
+import { useFavorite } from "../../contexts/favorite";
+
+export let restaurantData = {};
 
 const Home = ({ navigation }) => {
   navigation = navigation;
@@ -76,10 +79,11 @@ const Home = ({ navigation }) => {
   const fairPrice = 2;
   const expensive = 3;
 
-  const restaurantData = [
+  restaurantData = [
     {
       id: 1,
       name: "Senhora Amêndoa",
+      favorite: null,
       rating: 4.4,
       categories: [7, 9, 10],
       priceRating: expensive,
@@ -120,6 +124,7 @@ const Home = ({ navigation }) => {
     {
       id: 2,
       name: "Padaria Seleve",
+      favorite: null,
       rating: 4.2,
       categories: [3, 4, 9],
       priceRating: fairPrice,
@@ -169,6 +174,7 @@ const Home = ({ navigation }) => {
     {
       id: 3,
       name: "Passos Sem Glúten",
+      favorite: null,
       rating: 4.5,
       categories: [9],
       priceRating: expensive,
@@ -192,6 +198,7 @@ const Home = ({ navigation }) => {
     {
       id: 4,
       name: "Nutri Bakery",
+      favorite: null,
       rating: 4.4,
       categories: [3, 6],
       priceRating: expensive,
@@ -215,6 +222,7 @@ const Home = ({ navigation }) => {
     {
       id: 5,
       name: "Há Hamburgueria",
+      favorite: null,
       rating: 4.3,
       categories: [5, 7, 10],
       priceRating: fairPrice,
@@ -264,6 +272,7 @@ const Home = ({ navigation }) => {
     {
       id: 6,
       name: "Amaranto Cozinha Inclusiva",
+      favorite: null,
       rating: 4.8,
       categories: [1, 7, 10],
       priceRating: affordable,

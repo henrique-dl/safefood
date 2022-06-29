@@ -21,6 +21,7 @@ const notification = require("../assets/icons2/notification.png");
 const profile = require("../assets/icons2/profile.png");
 const qrcode = require("../assets/icons2/qrcode.png");
 const favorite_place = require("../assets/icons2/favorite_place.png");
+const favorite_list = require("../assets/icons2/favorite_list.png");
 const setting = require("../assets/icons2/setting.png");
 const star = require("../assets/icons2/star.png");
 const wallet = require("../assets/icons2/wallet.png");
@@ -54,6 +55,7 @@ export default {
   profile,
   qrcode,
   favorite_place,
+  favorite_list,
   setting,
   star,
   wallet,

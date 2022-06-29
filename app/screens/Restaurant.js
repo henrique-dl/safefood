@@ -13,6 +13,9 @@ import { TextButton } from "../components";
 
 import { icons, COLORS, SIZES, FONTS } from "../constants";
 
+import { useFavorite } from "../contexts/favorite";
+import { restaurantData } from "./Home/Home";
+
 const establishment = require("../assets/onboardImages/onboardScreen1.png");
 
 const Restaurant = ({ route, navigation }) => {
@@ -20,9 +23,15 @@ const Restaurant = ({ route, navigation }) => {
   const [restaurant, setRestaurant] = React.useState(null);
   const [currentLocation, setCurrentLocation] = React.useState(null);
 
-  const [favorite, setFavorite] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState({});
+  let currRestaurant = {};
 
-  // console.log(route);
+  if (route.params != null) {
+    currRestaurant = restaurantData.find(
+      (item) => item.id == route.params.item.id
+    );
+  }
+
   React.useEffect(() => {
     if (route.params != null) {
       let { item, currentLocation } = route.params;
@@ -30,11 +39,17 @@ const Restaurant = ({ route, navigation }) => {
       setRestaurant(item);
       setCurrentLocation(currentLocation);
     }
-  }, [route.params]);
+    setIsFavorite(currRestaurant.favorite);
+  }, [route.params, currRestaurant.favorite]);
 
   function toggleFavorite() {
-    // console.log(favorite);
-    setFavorite(!favorite);
+    if (isFavorite == null || isFavorite == undefined || isFavorite == false) {
+      route.params.item.favorite = true;
+      setIsFavorite(route.params.item.favorite);
+    } else if (isFavorite == true) {
+      route.params.item.favorite = false;
+      setIsFavorite(route.params.item.favorite);
+    }
   }
 
   function renderHeader() {
@@ -147,7 +162,7 @@ const Restaurant = ({ route, navigation }) => {
                   }}
                   onPress={() => toggleFavorite()}
                 >
-                  {favorite ? (
+                  {currRestaurant.favorite ? (
                     <Text style={{ ...FONTS.body1, color: COLORS.primary }}>
                       ♥
                     </Text>
@@ -161,7 +176,7 @@ const Restaurant = ({ route, navigation }) => {
             </View>
 
             <View style={{ marginTop: 30 }}>
-              {favorite ? (
+              {currRestaurant.favorite ? (
                 <Text style={{ ...FONTS.body3 }}>
                   Estabelecimento adicionado à lista de favoritos
                 </Text>

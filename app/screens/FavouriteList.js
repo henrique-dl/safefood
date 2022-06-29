@@ -9,63 +9,17 @@ import {
 } from "react-native";
 import { icons, COLORS, SIZES, FONTS, icons2, images } from "../constants";
 
+import { restaurantData } from "./Home/Home";
+
 const FavouriteList = ({ navigation }) => {
-  const favoriteData = [
-    {
-      id: 1,
-      name: "Senhora Amêndoa",
-      rating: 4.4,
-      categories: [7, 9, 10],
-      // priceRating: expensive,
-      photo: images.sra_amendoa,
-      administrativeCity: "Asa Norte",
-    },
-    {
-      id: 2,
-      name: "Padaria Seleve",
-      rating: 4.2,
-      categories: [3, 4, 9],
-      // priceRating: fairPrice,
-      photo: images.seleve,
-      administrativeCity: "Asa Norte",
-    },
-    {
-      id: 3,
-      name: "Passos Sem Glúten",
-      rating: 4.5,
-      categories: [9],
-      // priceRating: expensive,
-      photo: images.passos_sem_gluten,
-      administrativeCity: "Águas Claras",
-    },
-    {
-      id: 4,
-      name: "Nutri Bakery",
-      rating: 4.4,
-      categories: [3, 6],
-      // priceRating: expensive,
-      photo: images.nutri_bakery,
-      administrativeCity: "Asa Sul",
-    },
-    {
-      id: 5,
-      name: "Há Hamburgueria",
-      rating: 4.3,
-      categories: [5, 7, 10],
-      // priceRating: fairPrice,
-      photo: images.ha_hamburgueria,
-      administrativeCity: "Sudoeste",
-    },
-    {
-      id: 6,
-      name: "Amaranto Cozinha Inclusiva",
-      rating: 4.8,
-      categories: [1, 7, 10],
-      // priceRating: affordable,
-      photo: images.amaranto,
-      administrativeCity: "Gama",
-    },
-  ];
+  let favorites = restaurantData.filter((item) => item.favorite == true);
+
+  const [favoritesLen, setFavoritesLen] = React.useState(0);
+
+  navigation.addListener("focus", () => {
+    favorites = restaurantData.filter((item) => item.favorite == true);
+    setFavoritesLen(favorites.length);
+  });
 
   function renderHeader() {
     return (
@@ -141,7 +95,7 @@ const FavouriteList = ({ navigation }) => {
     return (
       <View height={SIZES.height * 0.75}>
         <FlatList
-          data={favoriteData}
+          data={favorites}
           keyExtractor={(item) => `${item.id}`}
           renderItem={renderItem}
         />
@@ -169,7 +123,50 @@ const FavouriteList = ({ navigation }) => {
           source={icons2.favorite_place}
         />
       </Text>
-      {renderFavoriteList()}
+      {favoritesLen == 0 ? (
+        <>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              source={icons2.favorite_list}
+              style={{
+                width: SIZES.width * 1,
+                height: SIZES.width * 0.8,
+                marginBottom: -SIZES.padding,
+              }}
+            />
+          </View>
+
+          <View
+            style={{
+              padding: 50,
+            }}
+          >
+            <Text style={{ textAlign: "center", fontSize: 22 }}>
+              Nenhum favorito ainda
+            </Text>
+            <Text
+              style={{
+                textAlign: "center",
+                marginTop: SIZES.radius,
+                textAlign: "center",
+                color: COLORS.darkGray,
+                ...FONTS.body3,
+              }}
+            >
+              Selecione estabelecimentos que você está interessado clicando no
+              ícone ♥.
+            </Text>
+          </View>
+        </>
+      ) : (
+        renderFavoriteList()
+      )}
     </View>
   );
 };

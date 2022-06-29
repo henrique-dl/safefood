@@ -36,8 +36,6 @@ export const AuthProvider = ({ children }) => {
     const response = await auth.signIn(email);
 
     if (!response.user || response.error) {
-      console.log("oi");
-      console.log(response.error);
       setUserError(response.error);
     } else {
       setUser(response.user);
