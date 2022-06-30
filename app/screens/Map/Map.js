@@ -1,5 +1,10 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  PermissionsAndroid,
+} from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { Header } from "../../components";
@@ -37,7 +42,10 @@ const Map = ({ route, navigation }) => {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
+      let location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Highest,
+      });
+      console.log(location);
       setRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
@@ -53,6 +61,7 @@ const Map = ({ route, navigation }) => {
 
       setLocation(location);
     })();
+
     let text = "Carregando localização...";
     setErrorMsg(text);
     if (errorMsg) {
