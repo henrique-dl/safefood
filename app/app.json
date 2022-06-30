@@ -3,7 +3,7 @@
     "name": "SafeFood",
     "slug": "SafeFood",
     "scheme": "safefood",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,11 +17,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.tcc.safefood",
-      "buildNumber": "0.0.5",
+      "buildNumber": "0.0.6",
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 5,
+      "versionCode": 6,
       "package": "com.tcc.safefood",
       "permissions": [
         "com.google.android.c2dm.permission.RECEIVE",
@@ -34,7 +34,6 @@
         "com.sec.android.provider.badge.permission.READ",
         "com.sec.android.provider.badge.permission.WRITE",
         "ACCESS_FINE_LOCATION",
-        "ACCESS_BACKGROUND_LOCATION",
         "ACCESS_COARSE_LOCATION"
       ],
       "adaptiveIcon": {
