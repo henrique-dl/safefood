@@ -4,7 +4,7 @@ import {
   createDrawerNavigator,
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
-import Tabs from "./Tabs";
+import Tabs from "./tabs";
 import {
   COLORS,
   FONTS,

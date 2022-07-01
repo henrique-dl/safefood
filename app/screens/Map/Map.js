@@ -45,7 +45,6 @@ const Map = ({ route, navigation }) => {
       let location = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.Highest,
       });
-      console.log(location);
       setRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
