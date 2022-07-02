@@ -32,7 +32,7 @@ const screens = {
   cart: "Cart",
   favourite: "Favoritos",
   favouriteList: "Lista de favoritos",
-  help: "Ajuda",
+  settings: "Configurações",
 };
 
 const bottom_tabs = [

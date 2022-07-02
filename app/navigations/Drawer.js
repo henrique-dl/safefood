@@ -279,9 +279,41 @@ const CustomDrawerContent = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
 
-          <CustomDrawerItem label={constants.screens.help} icon={icons2.help} />
+          <CustomDrawerItem
+            label={constants.screens.settings}
+            icon={icons2.setting}
+          />
 
-          <CustomDrawerItem label="Descontos" icon={icons2.qrcode} />
+          <TouchableOpacity
+            style={{
+              marginBottom: 10,
+              flexDirection: "row",
+              height: 40,
+              marginBottom: SIZES.base,
+              alignItems: "center",
+              paddingLeft: SIZES.base,
+              borderRadius: SIZES.base,
+            }}
+            onPress={() => navigation.navigate("QRcode")}
+          >
+            <Image
+              source={icons2.qrcode}
+              style={{
+                width: 20,
+                height: 20,
+                tintColor: COLORS.black,
+              }}
+            />
+            <Text
+              style={{
+                color: COLORS.black,
+                ...FONTS.h3,
+                marginLeft: SIZES.padding,
+              }}
+            >
+              Descontos
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity
@@ -335,13 +367,13 @@ const MainScreen = () => {
           backgroundColor: "transparent",
         },
         headerShown: false,
-        initialRouteName: "MainLayout",
+        initialRouteName: "Tabs",
       }}
       drawerContent={(props) => {
         return <CustomDrawerContent navigation={props.navigation} />;
       }}
     >
-      <Drawer.Screen name="MainLayout" component={Tabs} />
+      <Drawer.Screen name="Tabs" component={Tabs} />
     </Drawer.Navigator>
   );
 };

@@ -169,7 +169,7 @@ const SignUp = ({ navigation }) => {
             }
           />
 
-          {signUpType == "PJ" ? (
+          {signUpType == "PJ" && (
             <FormInput
               label="Endereço"
               containerStyle={{
@@ -204,7 +204,7 @@ const SignUp = ({ navigation }) => {
                 </View>
               }
             />
-          ) : null}
+          )}
 
           {signUpType == "PJ" && (
             <FormInput

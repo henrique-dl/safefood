@@ -7,6 +7,7 @@ import OnBoarding from "./OnBoarding/OnBoarding";
 import Map from "./Map/Map";
 import Restaurant from "./Restaurant";
 import FavouriteList from "./FavouriteList";
+import QRcode from "./QRcode";
 
 export {
   MainLayout,
@@ -18,4 +19,5 @@ export {
   Map,
   Restaurant,
   FavouriteList,
+  QRcode,
 };

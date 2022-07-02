@@ -7,9 +7,9 @@ import {
 import Svg, { Path } from "react-native-svg";
 import { isIphoneX } from "react-native-iphone-x-helper";
 
-import { Home, Map, Restaurant, FavouriteList } from "../screens";
+import { Home, Map, Restaurant, FavouriteList, QRcode } from "../screens";
 
-import { COLORS, icons } from "../constants";
+import { COLORS, icons, icons2 } from "../constants";
 
 const Tab = createBottomTabNavigator();
 
@@ -149,6 +149,25 @@ const Tabs = () => {
           tabBarIcon: ({ focused }) => (
             <Image
               source={icons.like}
+              resizeMode="contain"
+              style={{
+                width: 25,
+                height: 25,
+                tintColor: focused ? COLORS.primary : COLORS.secondary,
+              }}
+            />
+          ),
+          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+        }}
+      />
+
+      <Tab.Screen
+        name="QRcode"
+        component={QRcode}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={icons2.qrcode}
               resizeMode="contain"
               style={{
                 width: 25,
