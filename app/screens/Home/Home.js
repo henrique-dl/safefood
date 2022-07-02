@@ -11,7 +11,6 @@ import {
 
 import { icons, images, SIZES, COLORS, FONTS } from "../../constants";
 import { Header } from "../../components";
-import { useFavorite } from "../../contexts/favorite";
 
 export let restaurantData = {};
 

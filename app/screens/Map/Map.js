@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  PermissionsAndroid,
-} from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { Header } from "../../components";
@@ -43,7 +38,7 @@ const Map = ({ route, navigation }) => {
       }
 
       let location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Highest,
+        accuracy: Location.Accuracy.High,
       });
       setRegion({
         latitude: location.coords.latitude,

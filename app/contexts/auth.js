@@ -1,9 +1,7 @@
 import React, { createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { View, ActivityIndicator } from "react-native";
-import * as auth from "../services/auth";
 import { COLORS } from "../constants";
-import api from "../libs/api";
 import * as AuthSession from "expo-auth-session";
 
 const AuthContext = createContext(null);
@@ -19,12 +17,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     async function loadStoragedData() {
-      const storageUser = await AsyncStorage.getItem("@SafeFoodAuth:user");
-      const storageToken = await AsyncStorage.getItem("@SafeFoodAuth:token");
+      const storagedUser = await AsyncStorage.getItem("user");
+      const storagedToken = await AsyncStorage.getItem("token");
 
-      if (storageUser && storageToken) {
-        api.defaults.headers["Authorization"] = `Bearer ${storageToken.token}`;
-        setUser(JSON.parse(storageUser));
+      if (storagedUser && storagedToken) {
+        setUser(JSON.parse(storagedUser));
         setLoading(false);
       }
     }
@@ -44,11 +41,20 @@ export const AuthProvider = ({ children }) => {
 
       const { type, params } = await AuthSession.startAsync({ authUrl });
 
+      await AsyncStorage.setItem("token", params.access_token);
+
       if (type == "success") {
         const response = await fetch(
           `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`
         );
-        setUser(await response.json());
+        await AsyncStorage.setItem(
+          "user",
+          JSON.stringify(await response.json())
+        );
+        const storagedUser = await AsyncStorage.getItem("user");
+        if (storagedUser) {
+          setUserStorage(JSON.parse(storagedUser));
+        }
       }
     } catch (error) {
       return error;

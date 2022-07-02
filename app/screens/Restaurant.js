@@ -13,7 +13,6 @@ import { TextButton } from "../components";
 
 import { icons, COLORS, SIZES, FONTS } from "../constants";
 
-import { useFavorite } from "../contexts/favorite";
 import { restaurantData } from "./Home/Home";
 
 const establishment = require("../assets/onboardImages/onboardScreen1.png");

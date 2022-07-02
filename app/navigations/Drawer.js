@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -62,6 +63,7 @@ const CustomDrawerItem = ({ label, icon }) => {
 
 const CustomDrawerContent = ({ navigation }) => {
   const { user, signOut } = useAuth();
+
   function handleSignOut() {
     signOut();
   }
