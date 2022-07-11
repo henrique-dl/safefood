@@ -16,6 +16,8 @@ Ao acessar o aplicativo, você terá uma listagens de estabelecimentos que assin
 ## Tecnologias
 
 Aplicativo desenvolvido utilizando o framework javascript React.js com Expo, API Rest em Node.js e banco de dados SQL.
+
+
 ![Captura_de_tela_2022-07-04_160633-removebg-preview](https://user-images.githubusercontent.com/44511471/178283787-0920eaae-6afe-4977-a55a-8d74bb5e3f73.png)
 ![Captura_de_tela_2022-07-04_160647-removebg-preview](https://user-images.githubusercontent.com/44511471/178283793-41f85fc5-9bc1-44a0-b485-997ad7b6893e.png)
 ![Captura_de_tela_2022-07-04_160659-removebg-preview](https://user-images.githubusercontent.com/44511471/178283795-c2479f1f-67cb-4e01-9446-97fb599321e8.png)
