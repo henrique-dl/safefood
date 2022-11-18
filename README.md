@@ -2,9 +2,9 @@
 
 ## Sobre
 
-Aplicativo desenvolvido com a proposta de trazer uma solução para pessoas portadoras da doença celíaca as quais necessitam de um ambiente controlado e livre de contaminação direta do glúten.
+Este aplicativo é uma ideia de um projeto que tem como objetivo trazer uma solução para pessoas portadoras da doença celíaca as quais necessitam de um ambiente controlado e livre de contaminação direta do glúten.
 
-Ao acessar o aplicativo, você terá uma listagens de estabelecimentos que assinaram um termo de compromisso para garantir a segurança e evitar a contaminação cruzada, tão temida pelos celíacos, facilitando o encontro desses estabelecimentos, poupando o deslocamento até o local ou o contato telefônico para cada estabelecimento.
+Ao acessar o aplicativo, você terá uma listagens de estabelecimentos que assinaram um termo de compromisso para garantir a segurança e evitar a contaminação cruzada, tão temida pelos celíacos, facilitando o encontro desses estabelecimentos, poupando o deslocamento até o local ou o contato telefônico para cada estabelecimento. Tudo isso com a facilidade do seu smartphone
 
 ## Instação
 
